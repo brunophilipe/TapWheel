@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		15B872D419D30BBD00EA408D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872D319D30BBD00EA408D /* main.m */; };
-		15B872D719D30BBD00EA408D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872D619D30BBD00EA408D /* AppDelegate.m */; };
-		15B872DA19D30BBD00EA408D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872D919D30BBD00EA408D /* ViewController.m */; };
+		15B872D719D30BBD00EA408D /* BPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872D619D30BBD00EA408D /* BPAppDelegate.m */; };
+		15B872DA19D30BBD00EA408D /* BPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872D919D30BBD00EA408D /* BPMainViewController.m */; };
 		15B872DD19D30BBD00EA408D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B872DB19D30BBD00EA408D /* Main.storyboard */; };
 		15B872DF19D30BBD00EA408D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15B872DE19D30BBD00EA408D /* Images.xcassets */; };
 		15B872E219D30BBD00EA408D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B872E019D30BBD00EA408D /* LaunchScreen.xib */; };
 		15B872EE19D30BBD00EA408D /* TapWheelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872ED19D30BBD00EA408D /* TapWheelTests.m */; };
+		15B872F919D3190C00EA408D /* BPClickWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872F819D3190C00EA408D /* BPClickWheelView.m */; };
+		15B872FD19D334C800EA408D /* BPNavigationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872FC19D334C800EA408D /* BPNavigationTableViewController.m */; };
+		15B8730019D335B000EA408D /* BPiPodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872FF19D335B000EA408D /* BPiPodTableViewCell.m */; };
+		15B8730319D335C700EA408D /* BPTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8730219D335C700EA408D /* BPTitleTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,16 +34,24 @@
 		15B872CE19D30BBD00EA408D /* TapWheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapWheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B872D219D30BBD00EA408D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B872D319D30BBD00EA408D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		15B872D519D30BBD00EA408D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		15B872D619D30BBD00EA408D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		15B872D819D30BBD00EA408D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		15B872D919D30BBD00EA408D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		15B872D519D30BBD00EA408D /* BPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPAppDelegate.h; sourceTree = "<group>"; };
+		15B872D619D30BBD00EA408D /* BPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPAppDelegate.m; sourceTree = "<group>"; };
+		15B872D819D30BBD00EA408D /* BPMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BPMainViewController.h; sourceTree = "<group>"; };
+		15B872D919D30BBD00EA408D /* BPMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BPMainViewController.m; sourceTree = "<group>"; };
 		15B872DC19D30BBD00EA408D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		15B872DE19D30BBD00EA408D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		15B872E119D30BBD00EA408D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		15B872E719D30BBD00EA408D /* TapWheelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TapWheelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B872EC19D30BBD00EA408D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B872ED19D30BBD00EA408D /* TapWheelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TapWheelTests.m; sourceTree = "<group>"; };
+		15B872F719D3190C00EA408D /* BPClickWheelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPClickWheelView.h; path = Views/BPClickWheelView.h; sourceTree = "<group>"; };
+		15B872F819D3190C00EA408D /* BPClickWheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPClickWheelView.m; path = Views/BPClickWheelView.m; sourceTree = "<group>"; };
+		15B872FB19D334C800EA408D /* BPNavigationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPNavigationTableViewController.h; sourceTree = "<group>"; };
+		15B872FC19D334C800EA408D /* BPNavigationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPNavigationTableViewController.m; sourceTree = "<group>"; };
+		15B872FE19D335B000EA408D /* BPiPodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPiPodTableViewCell.h; path = Views/BPiPodTableViewCell.h; sourceTree = "<group>"; };
+		15B872FF19D335B000EA408D /* BPiPodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPiPodTableViewCell.m; path = Views/BPiPodTableViewCell.m; sourceTree = "<group>"; };
+		15B8730119D335C700EA408D /* BPTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPTitleTableViewCell.h; path = Views/BPTitleTableViewCell.h; sourceTree = "<group>"; };
+		15B8730219D335C700EA408D /* BPTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPTitleTableViewCell.m; path = Views/BPTitleTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,14 +93,17 @@
 		15B872D019D30BBD00EA408D /* TapWheel */ = {
 			isa = PBXGroup;
 			children = (
-				15B872D519D30BBD00EA408D /* AppDelegate.h */,
-				15B872D619D30BBD00EA408D /* AppDelegate.m */,
-				15B872D819D30BBD00EA408D /* ViewController.h */,
-				15B872D919D30BBD00EA408D /* ViewController.m */,
+				15B872FA19D3191000EA408D /* Views */,
+				15B872D519D30BBD00EA408D /* BPAppDelegate.h */,
+				15B872D619D30BBD00EA408D /* BPAppDelegate.m */,
+				15B872D819D30BBD00EA408D /* BPMainViewController.h */,
+				15B872D919D30BBD00EA408D /* BPMainViewController.m */,
 				15B872DB19D30BBD00EA408D /* Main.storyboard */,
 				15B872DE19D30BBD00EA408D /* Images.xcassets */,
 				15B872E019D30BBD00EA408D /* LaunchScreen.xib */,
 				15B872D119D30BBD00EA408D /* Supporting Files */,
+				15B872FB19D334C800EA408D /* BPNavigationTableViewController.h */,
+				15B872FC19D334C800EA408D /* BPNavigationTableViewController.m */,
 			);
 			path = TapWheel;
 			sourceTree = "<group>";
@@ -117,6 +132,19 @@
 				15B872EC19D30BBD00EA408D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		15B872FA19D3191000EA408D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				15B872F719D3190C00EA408D /* BPClickWheelView.h */,
+				15B872F819D3190C00EA408D /* BPClickWheelView.m */,
+				15B872FE19D335B000EA408D /* BPiPodTableViewCell.h */,
+				15B872FF19D335B000EA408D /* BPiPodTableViewCell.m */,
+				15B8730119D335C700EA408D /* BPTitleTableViewCell.h */,
+				15B8730219D335C700EA408D /* BPTitleTableViewCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +247,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15B872DA19D30BBD00EA408D /* ViewController.m in Sources */,
-				15B872D719D30BBD00EA408D /* AppDelegate.m in Sources */,
+				15B872DA19D30BBD00EA408D /* BPMainViewController.m in Sources */,
+				15B872F919D3190C00EA408D /* BPClickWheelView.m in Sources */,
+				15B872D719D30BBD00EA408D /* BPAppDelegate.m in Sources */,
+				15B8730019D335B000EA408D /* BPiPodTableViewCell.m in Sources */,
+				15B872FD19D334C800EA408D /* BPNavigationTableViewController.m in Sources */,
+				15B8730319D335C700EA408D /* BPTitleTableViewCell.m in Sources */,
 				15B872D419D30BBD00EA408D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

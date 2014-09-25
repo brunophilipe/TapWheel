@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  BPTitleTableViewCell.h
 //  TapWheel
 //
 //  Created by Bruno Philipe on 9/24/14.
 //  Copyright (c) 2014 Bruno Philipe. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BPiPodTableViewCell.h"
 
-@interface ViewController : UIViewController
-
+@interface BPTitleTableViewCell : BPiPodTableViewCell
 
 @end
-

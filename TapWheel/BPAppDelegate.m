@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Bruno Philipe. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "BPAppDelegate.h"
 
-@interface AppDelegate ()
+@interface BPAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation BPAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  BPiPodTableViewCell.h
 //  TapWheel
 //
 //  Created by Bruno Philipe on 9/24/14.
@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface BPiPodTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
-

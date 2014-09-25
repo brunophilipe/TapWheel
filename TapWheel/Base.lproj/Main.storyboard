@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="BPMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +15,107 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="KMm-Yn-ZAc">
+                                <rect key="frame" x="140" y="60" width="320" height="480"/>
+                            </imageView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsL-Ai-x7d">
+                                <rect key="frame" x="140" y="60" width="320" height="480"/>
+                                <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zq1-vP-VaY" customClass="BPClickWheelView">
+                                        <rect key="frame" x="71" y="238" width="178" height="178"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="178" id="7Ex-cP-wrV"/>
+                                            <constraint firstAttribute="width" constant="178" id="iX4-nV-j2q"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="17" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="AGV-xA-xQu">
+                                        <rect key="frame" x="41" y="30" width="238" height="178"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="238" id="U0R-rc-CmP"/>
+                                            <constraint firstAttribute="height" constant="178" id="iKF-j3-7Si"/>
+                                        </constraints>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_title" id="Wfb-zW-cxO" customClass="BPTitleTableViewCell">
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wfb-zW-cxO" id="247-qd-ojY">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" text="iPod" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHu-yx-Sp7">
+                                                            <rect key="frame" x="5" y="0.0" width="150" height="17"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="uHu-yx-Sp7" secondAttribute="bottom" id="B0M-5l-cvg"/>
+                                                        <constraint firstItem="uHu-yx-Sp7" firstAttribute="leading" secondItem="247-qd-ojY" secondAttribute="leading" constant="5" id="fgx-DA-rLc"/>
+                                                        <constraint firstItem="uHu-yx-Sp7" firstAttribute="top" secondItem="247-qd-ojY" secondAttribute="top" id="lVD-k7-qgm"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="titleLabel" destination="uHu-yx-Sp7" id="M83-X4-pqH"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell_row" id="YSb-CL-fel" customClass="BPiPodTableViewCell">
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YSb-CL-fel" id="wOe-Iv-Z1O">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="iPod" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4p-16-7ef">
+                                                            <rect key="frame" x="5" y="0.0" width="233" height="17"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="w4p-16-7ef" firstAttribute="top" secondItem="wOe-Iv-Z1O" secondAttribute="top" id="DqB-lH-lMo"/>
+                                                        <constraint firstAttribute="bottom" secondItem="w4p-16-7ef" secondAttribute="bottom" id="Hcg-YG-oo4"/>
+                                                        <constraint firstAttribute="trailing" secondItem="w4p-16-7ef" secondAttribute="trailing" id="NBJ-hu-4ad"/>
+                                                        <constraint firstItem="w4p-16-7ef" firstAttribute="leading" secondItem="wOe-Iv-Z1O" secondAttribute="leading" constant="5" id="t8K-WZ-0GV"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="titleLabel" destination="w4p-16-7ef" id="cww-WL-Nvl"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <sections/>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="zq1-vP-VaY" firstAttribute="top" secondItem="AGV-xA-xQu" secondAttribute="bottom" constant="30" id="En8-uT-0ST"/>
+                                    <constraint firstAttribute="centerX" secondItem="zq1-vP-VaY" secondAttribute="centerX" id="gNJ-yO-Dtu"/>
+                                    <constraint firstItem="AGV-xA-xQu" firstAttribute="top" secondItem="lsL-Ai-x7d" secondAttribute="top" constant="30" id="tNa-m5-R0F"/>
+                                    <constraint firstItem="AGV-xA-xQu" firstAttribute="leading" secondItem="lsL-Ai-x7d" secondAttribute="leading" constant="41" id="wd1-8U-Guc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="KMm-Yn-ZAc" secondAttribute="centerX" id="PAT-tb-TZU"/>
+                            <constraint firstAttribute="centerY" secondItem="KMm-Yn-ZAc" secondAttribute="centerY" id="mSx-HI-J1P"/>
+                            <constraint firstItem="lsL-Ai-x7d" firstAttribute="width" secondItem="KMm-Yn-ZAc" secondAttribute="width" id="oRt-LX-Sbd"/>
+                            <constraint firstAttribute="centerX" secondItem="lsL-Ai-x7d" secondAttribute="centerX" id="pTp-YI-BIN"/>
+                            <constraint firstAttribute="centerY" secondItem="lsL-Ai-x7d" secondAttribute="centerY" id="pq7-L2-8vX"/>
+                            <constraint firstItem="lsL-Ai-x7d" firstAttribute="height" secondItem="KMm-Yn-ZAc" secondAttribute="height" id="stj-YK-nmQ"/>
+                        </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="clickWheel" destination="zq1-vP-VaY" id="QVt-RG-Scg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="320" height="480"/>
+    </resources>
 </document>
