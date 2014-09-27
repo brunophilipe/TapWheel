@@ -1,0 +1,5 @@
+#include "Pods-TapWheel-MarqueeLabel.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/MarqueeLabel" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/MarqueeLabel"
+OTHER_LDFLAGS = -ObjC ${PODS_TAPWHEEL_MARQUEELABEL_OTHER_LDFLAGS}
+PODS_ROOT = ${SRCROOT}
