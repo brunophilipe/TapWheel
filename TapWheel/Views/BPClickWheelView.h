@@ -16,7 +16,7 @@ typedef NS_ENUM(short, BPScrollDirection)
 
 typedef NS_ENUM(short, BPClickWheelAction)
 {
-	kBPClickWheelActionMain,
+	kBPClickWheelActionSelect,
 	kBPClickWheelActionMenu,
 	kBPClickWheelActionSkipNext,
 	kBPClickWheelActionSkipPrevious,
@@ -38,5 +38,6 @@ typedef NS_ENUM(short, BPClickWheelAction)
 - (void)clickWheel:(BPClickWheelView*)clickWheel didPerformClickAction:(BPClickWheelAction)action;
 - (void)clickWheel:(BPClickWheelView*)clickWheel didBeginHoldAction:(BPClickWheelAction)action;
 - (void)clickWheel:(BPClickWheelView*)clickWheel didFinishHoldAction:(BPClickWheelAction)action;
+- (void)clickWheelDidCancelHoldActions:(BPClickWheelView*)clickWheel;
 
 @end

@@ -9,13 +9,18 @@
 #import "BPClickWheelView.h"
 
 #define BPDegreesToRadians(x) (x * (M_PI/180.0))
+#define kBPDialSegmentSize 20.0
+#define kBPLongPressRoamingLimit 10.0
 
 BOOL BPEllipsisWithRectContainsPoint(CGRect rect, CGPoint point);
-short signum(double x);
 
-@interface BPClickWheelView ()
+@interface BPClickWheelView () <UIGestureRecognizerDelegate>
 
 @property (strong) UITapGestureRecognizer *tapRecognizer;
+@property (strong) NSTimer *longPressTimer;
+
+@property CGPoint longPressInitialPosition;
+@property BOOL didTriggerLongPress;
 
 @end
 
@@ -55,6 +60,8 @@ short signum(double x);
 	[self.tapRecognizer setNumberOfTapsRequired:1];
 	[self.tapRecognizer setNumberOfTouchesRequired:1];
 	[self addGestureRecognizer:self.tapRecognizer];
+
+	[self setLongPressInitialPosition:CGPointMake(-1.0, -1.0)];
 }
 
 - (CGFloat)radianFromCenterForTapAtLocation:(CGPoint)location
@@ -73,7 +80,24 @@ short signum(double x);
 		angle = M_PI*2 - atan((difference.y)/(difference.x));
 	}
 
-	return angle + M_PI*2;
+	return angle;
+}
+
+- (BPClickWheelAction)actionForTouchWithRadian:(CGFloat)radian
+{
+	BPClickWheelAction action;
+
+	if (radian > BPDegreesToRadians(45) && radian <= BPDegreesToRadians(135)) { //North, menu button
+		action = kBPClickWheelActionMenu;
+	} else if (radian > BPDegreesToRadians(135) && radian <= BPDegreesToRadians(225)) { //East, skip previous button
+		action = kBPClickWheelActionSkipPrevious;
+	} else if (radian > BPDegreesToRadians(225) && radian <= BPDegreesToRadians(315)) { //South, play/pause button
+		action = kBPClickWheelActionPlayPause;
+	} else { //East, skip next button
+		action = kBPClickWheelActionSkipNext;
+	}
+
+	return action;
 }
 
 //- (void)drawRect:(CGRect)rect
@@ -84,40 +108,91 @@ short signum(double x);
 //	UIRectFill(centerButtonArea);
 //}
 
+- (void)longPressTimerFired
+{
+	if (self.longPressInitialPosition.x >= 0 && self.longPressInitialPosition.y >= 0) {
+		[self.delegate clickWheel:self didBeginHoldAction:[self actionForTouchWithRadian:[self radianFromCenterForTapAtLocation:self.longPressInitialPosition]]];
+		[self setLongPressTimer:nil];
+		[self setDidTriggerLongPress:YES];
+	}
+}
+
 #pragma mark - Touch Events
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
+	[self setLongPressInitialPosition:[[touches anyObject] locationInView:self]];
+	[self setDidTriggerLongPress:NO];
 
+	if (self.longPressTimer)
+		[self.longPressTimer invalidate];
+
+	[self setLongPressTimer:[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(longPressTimerFired) userInfo:nil repeats:NO]];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesMoved:touches withEvent:event];
 
-	static BOOL _processingTapSpin = NO;
-	static CGFloat _rotationAccumulator = 0.0;
-	static CGFloat _lastRadian = 0.0;
+	static short previousSector = -1;
 
 	CGPoint tapLocation = [[touches anyObject] locationInView:self];
-	CGFloat currentRadian = [self radianFromCenterForTapAtLocation:tapLocation];
 
-	if (!_processingTapSpin || signum(currentRadian) != signum(_lastRadian)) {
-		_processingTapSpin = YES;
-		_lastRadian = currentRadian;
+	// Test if long press action should cancel
+	if (self.didTriggerLongPress && self.longPressInitialPosition.x >= 0 && self.longPressInitialPosition.y >= 0) {
+		CGVector roaming = CGVectorMake(ABS(tapLocation.x - _longPressInitialPosition.x), ABS(tapLocation.y - _longPressInitialPosition.y));
+		CGFloat linearRoaming = sqrt(pow(roaming.dx, 2) + pow(roaming.dy, 2));
+		if (linearRoaming >= kBPLongPressRoamingLimit) {
+			[self setLongPressInitialPosition:CGPointMake(-1.0, -1.0)];
+			[self.delegate clickWheelDidCancelHoldActions:self];
+			[self setDidTriggerLongPress:NO];
+		}
 	} else {
-		_rotationAccumulator += currentRadian - _lastRadian;
-		_lastRadian = currentRadian;
+		[self.longPressTimer invalidate];
+		[self setLongPressTimer:nil];
 	}
 
-	NSLog(@"%f", currentRadian);
+	CGFloat currentRadian = [self radianFromCenterForTapAtLocation:tapLocation];
+	short currentSector = MIN(currentRadian / BPDegreesToRadians(kBPDialSegmentSize), 17);
 
-	if (ABS(_rotationAccumulator) > BPDegreesToRadians(10)) { //Accumulated 10 degrees of rotation, call delegate
-		[self.delegate clickWheel:self didScrollInDirection:signum(_rotationAccumulator) > 0 ? kBPScrollDirectionUp : kBPScrollDirectionDown];
-		_rotationAccumulator = 0.0;
-		_lastRadian = 0.0;
-		_processingTapSpin = NO;
+	NSLog(@"%d", currentSector);
+
+	if (previousSector == 0 && currentSector == floor(359/kBPDialSegmentSize))
+	{ // Down
+		[self.delegate clickWheel:self didScrollInDirection:kBPScrollDirectionDown];
+	}
+	else if (previousSector == floor(359/kBPDialSegmentSize) && currentSector == 0)
+	{ // Up
+		[self.delegate clickWheel:self didScrollInDirection:kBPScrollDirectionUp];
+	}
+	else if (previousSector >= 0 && previousSector != currentSector)
+	{ // General, calculate direction
+		[self.delegate clickWheel:self didScrollInDirection:(previousSector > currentSector ? kBPScrollDirectionDown : kBPScrollDirectionUp)];
+	}
+
+	previousSector = currentSector;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[super touchesEnded:touches withEvent:event];
+
+	if (self.didTriggerLongPress && self.longPressInitialPosition.x >= 0 && self.longPressInitialPosition.y >= 0) {
+		[self setLongPressInitialPosition:CGPointMake(-1.0, -1.0)];
+		[self.delegate clickWheel:self didFinishHoldAction:[self actionForTouchWithRadian:[self radianFromCenterForTapAtLocation:self.longPressInitialPosition]]];
+		[self setDidTriggerLongPress:NO];
+	}
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[super touchesCancelled:touches withEvent:event];
+	[self setLongPressInitialPosition:CGPointMake(-1.0, -1.0)];
+	if (self.longPressTimer)
+	{
+		[self.longPressTimer invalidate];
+		[self setLongPressTimer:nil];
 	}
 }
 
@@ -129,19 +204,16 @@ short signum(double x);
 	CGPoint tapCoordinates = [self.tapRecognizer locationInView:self];
 
 	if (BPEllipsisWithRectContainsPoint(centerButtonArea, tapCoordinates)) {
-		[self.delegate clickWheel:self didPerformClickAction:kBPClickWheelActionMain];
+		[self.delegate clickWheel:self didPerformClickAction:kBPClickWheelActionSelect];
 	} else {
 		CGFloat radian = [self radianFromCenterForTapAtLocation:tapCoordinates];
-		if (radian > BPDegreesToRadians(45) && radian <= BPDegreesToRadians(135)) { //North, menu button
-			[self.delegate clickWheel:self didPerformClickAction:kBPClickWheelActionMenu];
-		} else if (radian > BPDegreesToRadians(135) && radian <= BPDegreesToRadians(225)) { //East, skip previous button
-			[self.delegate clickWheel:self didPerformClickAction:kBPClickWheelActionSkipPrevious];
-		} else if (radian > BPDegreesToRadians(225) && radian <= BPDegreesToRadians(315)) { //South, play/pause button
-			[self.delegate clickWheel:self didPerformClickAction:kBPClickWheelActionPlayPause];
-		} else { //East, skip next button
-			[self.delegate clickWheel:self didPerformClickAction:kBPClickWheelActionSkipNext];
-		}
+		[self.delegate clickWheel:self didPerformClickAction:[self actionForTouchWithRadian:radian]];
 	}
+}
+
+- (void)didPress:(UILongPressGestureRecognizer*)pressRecognizer
+{
+	NSLog(@"Here");
 }
 
 @end
@@ -152,9 +224,4 @@ BOOL BPEllipsisWithRectContainsPoint(CGRect rect, CGPoint point)
 	CGVector ellispeRadii = CGVectorMake(rect.size.width/2.0, rect.size.height/2.0);
 	CGFloat containment = (pow(point.x - ellipseCenter.x, 2)/pow(ellispeRadii.dx, 2)) + (pow(point.y - ellipseCenter.y, 2)/pow(ellispeRadii.dy, 2));
 	return containment <= 1.0;
-}
-
-short signum(double x)
-{
-	return x == 0 ? 0 : (x > 0 ? 1 : -1);
 }

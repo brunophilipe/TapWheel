@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>submenu</key>
+		<string></string>
+		<key>title</key>
+		<string>Music</string>
+	</dict>
+	<string>Videos</string>
+	<string>Photos</string>
+	<string>Podcasts</string>
+	<string>Extras</string>
+	<string>Settings</string>
+	<string>Shuffle Songs</string>
+	<string>Now Playing</string>
+</array>
+</plist>
