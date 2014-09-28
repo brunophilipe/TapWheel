@@ -8,6 +8,14 @@
 
 #import "BPTitleView.h"
 #import "BPGradientView.h"
+#import "BPProtocols.h"
+#import "BPMediaPlayer.h"
+
+@interface BPTitleView () <BPPlayerNotificationsReceiver>
+
+@property (nonatomic) IBOutlet UIImageView *playIcon;
+
+@end
 
 @implementation BPTitleView
 
@@ -20,8 +28,20 @@
 														andBottomColor:[UIColor colorWithRed: 0.718 green: 0.710 blue: 0.714 alpha: 1]];
 
 		[self insertSubview:backgroundView atIndex:0];
+
+		[[BPMediaPlayer sharedPlayer] addNotificationsReceipient:self];
 	}
 	return self;
+}
+
+- (void)dealloc
+{
+	[[BPMediaPlayer sharedPlayer] removeNotificationsReceipient:self];
+}
+
+- (void)playerStateChangedNotification:(NSNotification *)notification
+{
+	[self.playIcon setHidden:[[BPMediaPlayer sharedPlayer] playerState] != MPMusicPlaybackStatePlaying];
 }
 
 @end

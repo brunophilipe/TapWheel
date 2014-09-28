@@ -7,10 +7,16 @@
 //
 
 #import "BPMediaPlayer.h"
+#import "BPQuickReference.h"
+
+#import <objc/runtime.h>
 
 @interface BPMediaPlayer ()
 
 @property (strong) MPMusicPlayerController *mediaPlayer;
+@property (strong) MPMediaItemCollection *currentQueue;
+
+@property (strong) BPQuickReference *quickReference;
 
 @end
 
@@ -32,11 +38,12 @@
 	self = [super init];
 	if (self) {
 		[self setMediaPlayer:[MPMusicPlayerController systemMusicPlayer]];
+		[self setQuickReference:[BPQuickReference new]];
 	}
 	return self;
 }
 
-- (void)setNotificationsReceipient:(id<BPPlayerNotificationsReceiver>)receiver
+- (void)addNotificationsReceipient:(id<BPPlayerNotificationsReceiver>)receiver
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
 
@@ -55,9 +62,20 @@
 	[_mediaPlayer beginGeneratingPlaybackNotifications];
 }
 
+- (void)removeNotificationsReceipient:(id<BPPlayerNotificationsReceiver>)receiver
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:receiver name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:_mediaPlayer];
+	[[NSNotificationCenter defaultCenter] removeObserver:receiver name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:_mediaPlayer];
+}
+
 - (void)playMediaItem:(MPMediaItem*)item
 {
 	[self playCollection:[MPMediaItemCollection collectionWithItems:@[item]]];
+}
+
+- (MPMusicPlaybackState)playerState
+{
+	return [_mediaPlayer playbackState];
 }
 
 - (NSTimeInterval)currentPlaybackTime
@@ -67,6 +85,8 @@
 
 - (void)playCollection:(MPMediaItemCollection*)collection withCurrentItemIndex:(NSUInteger)index
 {
+	[self setCurrentQueue:collection];
+
 	[self.mediaPlayer stop];
 	[self.mediaPlayer setQueueWithItemCollection:collection];
 	if (index > 0) {
@@ -88,9 +108,9 @@
 - (void)skipToPreviousItem
 {
 	if (self.mediaPlayer.currentPlaybackTime < 1.0)
-		[self.mediaPlayer skipToBeginning];
-	else
 		[self.mediaPlayer skipToPreviousItem];
+	else
+		[self.mediaPlayer skipToBeginning];
 }
 
 - (void)playPause
@@ -104,6 +124,11 @@
 - (MPMediaItem*)nowPlayingItem
 {
 	return [self.mediaPlayer nowPlayingItem];
+}
+
+- (NSString*)playingQueueDescription
+{
+	return [self.quickReference playingQueueDescription];
 }
 
 #pragma mark - Accessors

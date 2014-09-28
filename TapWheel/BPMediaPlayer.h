@@ -18,7 +18,8 @@
 
 + (BPMediaPlayer *)sharedPlayer;
 
-- (void)setNotificationsReceipient:(id<BPPlayerNotificationsReceiver>)receiver;
+- (void)addNotificationsReceipient:(id<BPPlayerNotificationsReceiver>)receiver;
+- (void)removeNotificationsReceipient:(id<BPPlayerNotificationsReceiver>)receiver;
 
 - (void)playMediaItem:(MPMediaItem*)item;
 - (void)playCollection:(MPMediaItemCollection*)collection withCurrentItemIndex:(NSUInteger)index;
@@ -27,6 +28,9 @@
 - (void)skipToNextItem;
 - (void)skipToPreviousItem;
 - (void)playPause;
+
+- (NSString*)playingQueueDescription;
+- (MPMusicPlaybackState)playerState;
 
 - (MPMediaItem*)nowPlayingItem;
 - (NSTimeInterval)currentPlaybackTime;

@@ -12,10 +12,6 @@
 #import "BPProtocols.h"
 #import "BPMediaPlayer.h"
 
-#include <AudioToolbox/AudioToolbox.h>
-
-#define BPTock() (AudioServicesPlaySystemSound(1105))
-
 @interface BPMainViewController () <BPClickWheelViewDelegate>
 
 @property (strong, nonatomic) IBOutlet BPClickWheelView *clickWheel;
@@ -53,11 +49,11 @@
 	return UIInterfaceOrientationMaskPortrait;
 }
 
-- (BPListViewController*)topScreenTableViewController
+- (id<BPScrollable>)topScrollableController
 {
 	UIViewController *controller = [(UINavigationController*)self.screenViewController topViewController];
-	if ([controller isKindOfClass:[BPListViewController class]]) {
-		return (BPListViewController*)controller;
+	if ([controller conformsToProtocol:@protocol(BPScrollable)]) {
+		return (id)controller;
 	}
 	return nil;
 }
@@ -71,24 +67,25 @@
 	return nil;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+	return UIStatusBarStyleLightContent;
+}
+
 #pragma mark - Click Wheel Delegate
 
 - (void)clickWheel:(BPClickWheelView*)clickWheel didScrollInDirection:(BPScrollDirection)direction
 {
-	BOOL didMove = NO;
+	id<BPScrollable> topScrollable = [self topScrollableController];
 
 	switch (direction) {
 		case kBPScrollDirectionDown:
-			didMove = [[self topScreenTableViewController] selectNextRow];
+			[topScrollable scrollNext];
 			break;
 
 		case kBPScrollDirectionUp:
-			didMove = [[self topScreenTableViewController] selectPreviousRow];
+			[topScrollable scrollPrevious];
 			break;
-	}
-
-	if (didMove) {
-		BPTock();
 	}
 }
 

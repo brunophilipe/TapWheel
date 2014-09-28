@@ -14,7 +14,12 @@
 + (BPMediaLibrary *)sharedLibrary;
 
 - (NSArray*)listArtists;
+
 - (NSArray*)listSongs;
-- (NSArray*)listSongsByArtist:(NSString*)artist;
+- (NSArray*)listSongsByAlbum:(NSNumber*)albumPersistentID;
+- (NSArray*)listSongsByArtist:(NSNumber*)artistPersistentID;
+
+- (NSArray*)listAlbums;
+- (NSArray*)listAlbumsByArtist:(NSNumber*)artistPersistentID;
 
 @end

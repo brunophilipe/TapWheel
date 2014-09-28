@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BPProtocols.h"
 
-@interface BPPlayingViewController : UIViewController <BPNavigateable, BPPlayerNotificationsReceiver>
+@interface BPPlayingViewController : UIViewController <BPNavigateable, BPScrollable, BPPlayerNotificationsReceiver>
 
 + (BPPlayingViewController *)sharedPlayingViewController;
 

@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "BPProtocols.h"
 
-@interface BPListViewController : UITableViewController <BPNavigateable>
+@interface BPListViewController : UITableViewController <BPNavigateable, BPScrollable>
 
 @property (strong) NSString *contentID;
-@property (strong) NSString *contentPredicate;
+
+@property (strong) id contentPredicateValue;
+@property (strong) NSString *contentPredicateKey;
 
 - (BOOL)selectRow:(NSUInteger)row;
-- (BOOL)selectNextRow;
-- (BOOL)selectPreviousRow;
 
 @end

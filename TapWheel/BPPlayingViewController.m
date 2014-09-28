@@ -9,6 +9,7 @@
 #import "BPPlayingViewController.h"
 #import "BPMediaPlayer.h"
 #import "BPProgressView.h"
+#import "MarqueeLabel.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -18,15 +19,20 @@ short signum(double x);
 
 @property (strong, nonatomic) IBOutlet UIImageView *albumArtworkView;
 @property (strong, nonatomic) IBOutlet UILabel *label_trackNumber;
-@property (strong, nonatomic) IBOutlet UILabel *label_trackTitle;
-@property (strong, nonatomic) IBOutlet UILabel *label_artistName;
-@property (strong, nonatomic) IBOutlet UILabel *label_albumName;
+@property (strong, nonatomic) IBOutlet MarqueeLabel *label_trackTitle;
+@property (strong, nonatomic) IBOutlet MarqueeLabel *label_artistName;
+@property (strong, nonatomic) IBOutlet MarqueeLabel *label_albumName;
 
 @property (strong, nonatomic) IBOutlet UILabel *label_currentTime;
 @property (strong, nonatomic) IBOutlet UILabel *label_songLength;
 @property (strong, nonatomic) IBOutlet BPProgressView *progressView;
 
+@property (strong, nonatomic) IBOutlet MPVolumeView *volumeView;
+
+@property (strong) UISlider *volumeSlider;
+
 @property (strong) NSTimer *playbackInfoUpdateTimer;
+@property (strong) NSTimer *volumeControlDisplayTimer;
 
 @end
 
@@ -47,7 +53,38 @@ short signum(double x);
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-	[[BPMediaPlayer sharedPlayer] setNotificationsReceipient:self];
+	[[BPMediaPlayer sharedPlayer] addNotificationsReceipient:self];
+
+	[_label_trackTitle setRate:18.0];
+	[_label_trackTitle setAnimationCurve:UIViewAnimationOptionCurveEaseInOut];
+	[_label_artistName setRate:18.0];
+	[_label_artistName setAnimationCurve:UIViewAnimationOptionCurveEaseInOut];
+	[_label_albumName setRate:18.0];
+	[_label_albumName setAnimationCurve:UIViewAnimationOptionCurveEaseInOut];
+
+	[_volumeView setShowsRouteButton:NO];
+	[_volumeView setVolumeThumbImage:[UIImage imageNamed:@"volume_thumb"] forState:UIControlStateNormal];
+	[_volumeView setMaximumVolumeSliderImage:[UIImage imageNamed:@"progressBackground"] forState:UIControlStateNormal];
+	[_volumeView setMinimumVolumeSliderImage:[UIImage imageNamed:@"progressBar"] forState:UIControlStateNormal];
+	[_volumeView setOpaque:NO];
+	[_volumeView setBackgroundColor:[UIColor clearColor]];
+
+	[self setVolumeSlider:[self sliderUnderView:_volumeView]];
+}
+
+- (UISlider*)sliderUnderView:(UIView*)view
+{
+	UISlider *slider;
+	NSArray *subviews;
+
+	subviews = view.subviews;
+	for (UIView *subview in subviews) {
+		if ([subview isKindOfClass:[UISlider class]]) {
+			slider = (UISlider*)subview;
+		}
+	}
+
+	return slider;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -91,26 +128,18 @@ short signum(double x);
 
 	if (item)
 	{
-		NSUInteger trackNumber = [[item valueForProperty:MPMediaItemPropertyAlbumTrackNumber] unsignedIntegerValue];
-		NSUInteger trackCount = [[item valueForProperty:MPMediaItemPropertyAlbumTrackCount] unsignedIntegerValue];
-
 		[self.label_trackTitle setText:[item valueForProperty:MPMediaItemPropertyTitle]];
 		[self.label_artistName setText:[item valueForProperty:MPMediaItemPropertyArtist]];
 		[self.label_albumName setText:[item valueForProperty:MPMediaItemPropertyAlbumTitle]];
 
-		if (trackNumber > 0 && trackCount > 0) {
-			[self.label_trackNumber setText:[NSString stringWithFormat:@"%u of %u", trackNumber, trackCount]];
-		} else if (trackNumber > 0) {
-			[self.label_trackNumber setText:[NSString stringWithFormat:@"%u", trackNumber]];
-		} else {
-			[self.label_trackNumber setText:@""];
-		}
+		[self.label_trackNumber setText:[[BPMediaPlayer sharedPlayer] playingQueueDescription]];
 
 		[self.albumArtworkView setImage:[(MPMediaItemArtwork*)[item valueForProperty:MPMediaItemPropertyArtwork] imageWithSize:self.albumArtworkView.bounds.size]];
 	} else {
 		[self.label_trackTitle setText:@"Nothing is Playing"];
 		[self.label_artistName setText:@""];
 		[self.label_albumName setText:@""];
+		[self.label_trackNumber setText:@""];
 
 		[self.albumArtworkView setImage:nil];
 	}
@@ -121,17 +150,33 @@ short signum(double x);
 	MPMediaItem *item = [[BPMediaPlayer sharedPlayer] nowPlayingItem];
 
 	if (item) {
-		NSInteger itemLength = (NSInteger)[(NSNumber*)[item valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
-		NSInteger playbackTime = (NSInteger)[[BPMediaPlayer sharedPlayer] currentPlaybackTime];
+		NSTimeInterval itemLength = (NSInteger)[(NSNumber*)[item valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+		NSTimeInterval playbackTime = (NSInteger)[[BPMediaPlayer sharedPlayer] currentPlaybackTime];
 
-		[self.label_songLength setText:[self formattedTimeFromTimeInterval:playbackTime - itemLength]];
-		[self.label_currentTime setText:[self formattedTimeFromTimeInterval:playbackTime]];
-		[self.progressView setProgress:playbackTime/(double)itemLength];
+		[self.label_songLength setText:[self formattedTimeFromTimeInterval:(int)playbackTime - (int)itemLength]];
+		[self.label_currentTime setText:[self formattedTimeFromTimeInterval:(int)playbackTime]];
+		[self.progressView setProgress:playbackTime/itemLength];
 	} else {
 		[self.label_songLength setText:@"0:00"];
 		[self.label_currentTime setText:@"0:00"];
 		[self.progressView setProgress:0.0];
 	}
+}
+
+- (void)showVolumeControl
+{
+	[self.volumeView setHidden:NO];
+
+	if (self.volumeControlDisplayTimer)
+		[self.volumeControlDisplayTimer setFireDate:[[NSDate date] dateByAddingTimeInterval:2.5]];
+	else
+		[self setVolumeControlDisplayTimer:[NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(hideVolumeControl) userInfo:nil repeats:NO]];
+}
+
+- (void)hideVolumeControl
+{
+	[self setVolumeControlDisplayTimer:nil];
+	[self.volumeView setHidden:YES];
 }
 
 #pragma Mark - Player State Changes Notifications
@@ -140,6 +185,22 @@ short signum(double x);
 {
 	[self updateCurrentItemInformation];
 	[self updateCurrentPlaybackInformation];
+}
+
+#pragma mark - BPScrollable
+
+- (BOOL)scrollNext
+{
+	[self showVolumeControl];
+	[self.volumeSlider setValue:self.volumeSlider.value+0.025];
+	return YES;
+}
+
+- (BOOL)scrollPrevious
+{
+	[self showVolumeControl];
+	[self.volumeSlider setValue:self.volumeSlider.value-0.025];
+	return YES;
 }
 
 #pragma mark - BPNavigateable

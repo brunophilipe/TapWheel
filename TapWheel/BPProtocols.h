@@ -16,6 +16,13 @@
 
 @end
 
+@protocol BPScrollable <NSObject>
+
+- (BOOL)scrollNext;
+- (BOOL)scrollPrevious;
+
+@end
+
 @protocol BPPlayerNotificationsReceiver <NSObject>
 
 - (void)playerStateChangedNotification:(NSNotification*)notification;
