@@ -10,4 +10,7 @@
 
 @interface BPTitleView : UIView
 
+- (void)updateIconsStatus;
+- (void)setTitleString:(NSString*)title;
+
 @end

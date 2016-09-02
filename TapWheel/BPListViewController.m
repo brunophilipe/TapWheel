@@ -11,6 +11,7 @@
 #import "BPMediaLibrary.h"
 #import "BPMediaPlayer.h"
 #import "BPPlayingViewController.h"
+#import "BPTitleTableHeaderView.h"
 
 #include <AudioToolbox/AudioToolbox.h>
 
@@ -24,54 +25,75 @@
 
 @property NSUInteger selectedRow;
 
+@property (strong) NSString *title;
+
 @property BOOL didAppear;
 
 @end
 
 @implementation BPListViewController
 
+@dynamic title;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	[self.tableView registerClass:[BPTitleTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"status_header"];
 
-	if ([self.contentID isEqualToString:@"root"]) {
+	if ([self.contentID isEqualToString:@"root"])
+	{
 		self.elements = @[@"Music", @"Videos", @"Photos", @"Podcasts", @"Extras", @"Settings", @"Shuffle Songs", @"Now Playing"];
-	} else if ([self.contentID isEqualToString:@"music"]) {
+	}
+	else if ([self.contentID isEqualToString:@"music"])
+	{
 		self.elements = @[@"Playlists", @"Artists", @"Albums", @"Songs", @"Podcasts", @"Genres", @"Composers", @"Audiobooks"];
-	} else if ([self.contentID isEqualToString:@"artists"]) { //Artists have no higher level grouping
+	}
+	else if ([self.contentID isEqualToString:@"artists"])
+	{
+		//Artists have no higher level grouping
 		self.elements = [[BPMediaLibrary sharedLibrary] listArtists];
 		self.displayProperty = MPMediaItemPropertyArtist;
 	}
-	else if ([self.contentID isEqualToString:@"songs"]) //Songs have three kinds of groupings for now: all songs, all songs by artist or songs from a certain album
+	else if ([self.contentID isEqualToString:@"songs"])
 	{
-		if (self.contentPredicateValue) {
-			if ([self.contentPredicateKey isEqualToString:MPMediaItemPropertyAlbumPersistentID]) { //Show songs from an album
+		//Songs have three kinds of groupings for now: all songs, all songs by artist or songs from a certain album
+		if (self.contentPredicateValue)
+		{
+			if ([self.contentPredicateKey isEqualToString:MPMediaItemPropertyAlbumPersistentID])
+			{
+				//Show songs from an album
 				self.elements = [[BPMediaLibrary sharedLibrary] listSongsByAlbum:self.contentPredicateValue];
-			} else if ([self.contentPredicateKey isEqualToString:MPMediaItemPropertyAlbumArtistPersistentID]) { // Show all songs by an artist
+			}
+			else if ([self.contentPredicateKey isEqualToString:MPMediaItemPropertyAlbumArtistPersistentID])
+			{
+				// Show all songs by an artist
 				self.elements = [[BPMediaLibrary sharedLibrary] listSongsByArtist:self.contentPredicateValue];
 			}
 			self.displayProperty = MPMediaItemPropertyTitle;
-		} else { //Show ALL songs
+		}
+		else
+		{
+			//Show ALL songs
 			self.elements = [[BPMediaLibrary sharedLibrary] listSongs];
 			self.displayProperty = MPMediaItemPropertyTitle;
+			self.title = @"Songs";
 		}
 	}
-	else if ([self.contentID isEqualToString:@"albums"]) // Albums two kinds of groupings: all albums and albums by an artist
+	else if ([self.contentID isEqualToString:@"albums"])
 	{
-		if (self.contentPredicateValue) {
+		// Albums two kinds of groupings: all albums and albums by an artist
+		if (self.contentPredicateValue)
+		{
 			self.elements = [[BPMediaLibrary sharedLibrary] listAlbumsByArtist:self.contentPredicateValue];
-		} else {
+		}
+		else
+		{
 			self.elements = [[BPMediaLibrary sharedLibrary] listAlbums];
 		}
 		self.displayProperty = MPMediaItemPropertyAlbumTitle;
 	}
 
-	_selectedRow = 1;
+	_selectedRow = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -82,21 +104,45 @@
 	[self selectRow:previousRow];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (BOOL)selectRow:(NSUInteger)row
 {
-	NSUInteger newRow = MIN(MAX(row, 1), self.elements.count);
-//	if (_selectedRow != newRow) {
-		_selectedRow = newRow;
-		[self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:_selectedRow inSection:0] animated:NO scrollPosition:UITableViewScrollPositionBottom];
-		return YES;
-//	}
+	NSUInteger newRow = MIN(MAX(row, 0), self.elements.count-1);
 
-	return NO;
+	NSLog(@"%ld", row);
+
+	static short scrollCounter = 0;
+	UITableViewScrollPosition scrollPosition = UITableViewScrollPositionNone;
+
+	if (row > _selectedRow)
+	{
+		// Scroll down
+		if (scrollCounter == 8)
+			scrollPosition = UITableViewScrollPositionBottom;
+		else
+			scrollCounter++;
+
+	}
+	else if (row < _selectedRow)
+	{
+		// Scroll Up
+		if (scrollCounter == 0)
+			scrollPosition = UITableViewScrollPositionTop;
+		else
+			scrollCounter--;
+	}
+
+//	[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:newRow inSection:0] atScrollPosition:(newRow > _selectedRow ? UITableViewScrollPositionBottom : UITableViewScrollPositionTop) animated:NO];
+	[self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:newRow inSection:0] animated:NO scrollPosition:scrollPosition];//(newRow > _selectedRow ? UITableViewScrollPositionBottom : UITableViewScrollPositionTop)];
+
+	_selectedRow = newRow;
+
+	return YES;
 }
 
 - (BOOL)clearsSelectionOnViewWillAppear
@@ -113,6 +159,7 @@
 
 - (BOOL)scrollPrevious
 {
+	if (_selectedRow == 0) return NO;
 	BOOL returnVal = [self selectRow:_selectedRow-1];
 	if (returnVal) BPTock();
 	return returnVal;
@@ -127,40 +174,35 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.elements.count + 1;
+    return self.elements.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *identifier_title = @"cell_title";
-	static NSString *identifier_row = @"cell_row";
-
-	NSString *identifier;
-
-	if (indexPath.row == 0) {
-		identifier = identifier_title;
-	} else {
-		identifier = identifier_row;
-	}
-
+	static NSString *identifier = @"cell_row";
     BPiPodTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
     // Configure the cell...
-	if (indexPath.row > 0) {
-		id element = [self.elements objectAtIndex:indexPath.row - 1];
-		
-		if ([element isKindOfClass:[NSString class]]) {
-			[cell.titleLabel setText:element];
-		} else if ([element isKindOfClass:[MPContentItem class]]) {
-			[cell.titleLabel setText:[element title]];
-		} else if ([element isKindOfClass:[MPMediaItem class]]) {
-			[cell.titleLabel setText:[element valueForProperty:self.displayProperty]];
-		} else if ([element isKindOfClass:[MPMediaItemCollection class]]) {
-			[cell.titleLabel setText:[[element representativeItem] valueForProperty:self.displayProperty]];
-		}
+	id element = [self.elements objectAtIndex:indexPath.row];
+	
+	if ([element isKindOfClass:[NSString class]]) {
+		[cell.titleLabel setText:element];
+	} else if ([element isKindOfClass:[MPContentItem class]]) {
+		[cell.titleLabel setText:[element title]];
+	} else if ([element isKindOfClass:[MPMediaItem class]]) {
+		[cell.titleLabel setText:[element valueForProperty:self.displayProperty]];
+	} else if ([element isKindOfClass:[MPMediaItemCollection class]]) {
+		[cell.titleLabel setText:[[element representativeItem] valueForProperty:self.displayProperty]];
 	}
 
     return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	BPTitleTableHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"status_header"];
+	[headerView updateIconsStatus];
+	[headerView setTitleString:self.title];
+	return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -170,48 +212,55 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.row == 0) {
-		return 18.0;
-	} else {
-		return 20.0;
-	}
+	return 20.0;
 }
 
 #pragma mark - BPNavigateable
 
 - (void)gotoNextLevel
 {
-	NSString *selectedItem = [self.elements objectAtIndex:_selectedRow-1];
+	NSString *selectedItem = [self.elements objectAtIndex:_selectedRow];
 
-	if ([self.contentID isEqualToString:@"artists"]) {
+	if ([self.contentID isEqualToString:@"artists"])
+	{
 		[self performSegueWithIdentifier:@"show_albums" sender:self];
-	} else if ([self.contentID isEqualToString:@"albums"]) {
+	}
+	else if ([self.contentID isEqualToString:@"albums"])
+	{
 		[self performSegueWithIdentifier:@"show_songs" sender:self];
-	} else if ([selectedItem isKindOfClass:[MPMediaItem class]]) {
-		[[BPMediaPlayer sharedPlayer] playCollection:[MPMediaItemCollection collectionWithItems:self.elements] withCurrentItemIndex:_selectedRow-1];
-		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController] animated:YES];
-	} else if ([selectedItem isEqual:@"Now Playing"]) {
-		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController] animated:YES];
-	} else {
+	}
+	else if ([selectedItem isKindOfClass:[MPMediaItem class]])
+	{
+		[[BPMediaPlayer sharedPlayer] playCollection:[MPMediaItemCollection collectionWithItems:self.elements] withCurrentItemIndex:_selectedRow];
+		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController] animated:NO];
+	}
+	else if ([selectedItem isEqual:@"Now Playing"])
+	{
+		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController] animated:NO];
+	}
+	else
+	{
 		[self performSegueWithIdentifier:[NSString stringWithFormat:@"show_%@", [selectedItem lowercaseString]] sender:self];
 	}
 }
 
 - (void)gotoPreviousLevel
 {
-	[self.navigationController popViewControllerAnimated:YES];
+	[self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([self.contentID isEqualToString:@"artists"]) {
 		// Going to show albums
-		MPMediaItemCollection *selectedItem = [self.elements objectAtIndex:_selectedRow-1];
+		MPMediaItemCollection *selectedItem = [self.elements objectAtIndex:_selectedRow];
+		[(BPListViewController*)segue.destinationViewController setTitle:[[selectedItem representativeItem] valueForProperty:MPMediaItemPropertyAlbumArtist]];
 		[(BPListViewController*)segue.destinationViewController setContentPredicateKey:MPMediaItemPropertyAlbumArtistPersistentID];
 		[(BPListViewController*)segue.destinationViewController setContentPredicateValue:@([[selectedItem representativeItem] albumArtistPersistentID])];
 	} else if ([self.contentID isEqualToString:@"albums"]) {
 		// Going to show songs
-		MPMediaItemCollection *selectedItem = [self.elements objectAtIndex:_selectedRow-1];
+		MPMediaItemCollection *selectedItem = [self.elements objectAtIndex:_selectedRow];
+		[(BPListViewController*)segue.destinationViewController setTitle:[[selectedItem representativeItem] valueForProperty:MPMediaItemPropertyAlbumTitle]];
 		[(BPListViewController*)segue.destinationViewController setContentPredicateKey:MPMediaItemPropertyAlbumPersistentID];
 		[(BPListViewController*)segue.destinationViewController setContentPredicateValue:@([[selectedItem representativeItem] albumPersistentID])];
 	}

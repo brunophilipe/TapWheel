@@ -6,8 +6,11 @@
 //  Copyright (c) 2014 Bruno Philipe. All rights reserved.
 //
 
-#import "BPiPodTableViewCell.h"
+#import <UIKit/UIKit.h>
 
-@interface BPTitleTableViewCell : BPiPodTableViewCell
+@interface BPTitleTableHeaderView : UITableViewHeaderFooterView
+
+- (void)updateIconsStatus;
+- (void)setTitleString:(NSString*)title;
 
 @end

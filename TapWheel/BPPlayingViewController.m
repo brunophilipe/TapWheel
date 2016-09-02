@@ -44,7 +44,7 @@ short signum(double x);
 	{
 		static dispatch_once_t once;
 		static BPPlayingViewController *instance;
-		dispatch_once(&once, ^ { instance = [[UIStoryboard storyboardWithName:@"MenuStructure" bundle:nil] instantiateViewControllerWithIdentifier:@"now_playing"]; });
+		dispatch_once(&once, ^ { instance = [[UIStoryboard storyboardWithName:@"Interface_Color" bundle:nil] instantiateViewControllerWithIdentifier:@"now_playing"]; });
 		return instance;
 	}
 }
@@ -111,14 +111,14 @@ short signum(double x);
 
 - (NSString*)formattedTimeFromTimeInterval:(NSTimeInterval)interval
 {
-	NSInteger hours = abs((NSInteger)interval)/3600;
-	NSInteger minutes = abs((NSInteger)interval)/60;
-	NSInteger seconds = (abs((NSInteger)interval) - (minutes*60));
+	NSInteger hours = labs((NSInteger)interval)/3600;
+	NSInteger minutes = labs((NSInteger)interval)/60;
+	NSInteger seconds = (labs((NSInteger)interval) - (minutes*60));
 
 	if (hours > 0) {
-		return [NSString stringWithFormat:@"%c%01d:%02d:%02d", signum(interval) >= 0 ? '\0' : '-',  hours, minutes, seconds];
+		return [NSString stringWithFormat:@"%c%01ld:%02ld:%02ld", signum(interval) >= 0 ? '\0' : '-',  (long)hours, (long)minutes, (long)seconds];
 	} else {
-		return [NSString stringWithFormat:@"%c%01d:%02d", signum(interval) >= 0 ? '\0' : '-',  minutes, seconds];
+		return [NSString stringWithFormat:@"%c%01ld:%02ld", signum(interval) >= 0 ? '\0' : '-',  (long)minutes, (long)seconds];
 	}
 }
 

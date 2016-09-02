@@ -13,7 +13,9 @@
 
 @interface BPTitleView () <BPPlayerNotificationsReceiver>
 
-@property (nonatomic) IBOutlet UIImageView *playIcon;
+@property (strong, nonatomic) IBOutlet UIImageView *playIcon;
+@property (strong, nonatomic) IBOutlet UIImageView *batteryIcon;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -37,6 +39,16 @@
 - (void)dealloc
 {
 	[[BPMediaPlayer sharedPlayer] removeNotificationsReceipient:self];
+}
+
+- (void)updateIconsStatus
+{
+	[self playerStateChangedNotification:nil];
+}
+
+- (void)setTitleString:(NSString *)title
+{
+	[self.titleLabel setText:title];
 }
 
 - (void)playerStateChangedNotification:(NSNotification *)notification

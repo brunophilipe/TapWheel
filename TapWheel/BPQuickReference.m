@@ -43,7 +43,7 @@
 	NSUInteger voidIndex = (NSUInteger)[_mediaPlayer performSelector:selectorIndex];
 	NSUInteger voidCount = (NSUInteger)[_mediaPlayer performSelector:selectorCount];
 
-	NSString *result = [[NSString stringWithFormat:@"%u of %u", voidIndex+1, voidCount] retain];
+	NSString *result = [[NSString stringWithFormat:@"%lu of %lu", voidIndex+1, (unsigned long)voidCount] retain];
 
 	return result;
 }

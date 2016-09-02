@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1521F2EF19D7CB4100823E05 /* BPTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1521F2EE19D7CB4100823E05 /* BPTitleView.xib */; };
 		154D3D2419D47F88002ECE8B /* BPMediaLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 154D3D2319D47F88002ECE8B /* BPMediaLibrary.m */; };
 		154D3D2619D481EB002ECE8B /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154D3D2519D481EB002ECE8B /* MenuStructure.plist */; };
-		154D3D2B19D483AB002ECE8B /* MenuStructure.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 154D3D2A19D483AB002ECE8B /* MenuStructure.storyboard */; };
+		154D3D2B19D483AB002ECE8B /* Interface_Color.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 154D3D2A19D483AB002ECE8B /* Interface_Color.storyboard */; };
 		1569205819D7BB2F007BE690 /* BPQuickReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1569205719D7BB2F007BE690 /* BPQuickReference.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		15B872D419D30BBD00EA408D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872D319D30BBD00EA408D /* main.m */; };
 		15B872D719D30BBD00EA408D /* BPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872D619D30BBD00EA408D /* BPAppDelegate.m */; };
@@ -21,7 +22,7 @@
 		15B872F919D3190C00EA408D /* BPClickWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872F819D3190C00EA408D /* BPClickWheelView.m */; };
 		15B872FD19D334C800EA408D /* BPListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872FC19D334C800EA408D /* BPListViewController.m */; };
 		15B8730019D335B000EA408D /* BPiPodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872FF19D335B000EA408D /* BPiPodTableViewCell.m */; };
-		15B8730319D335C700EA408D /* BPTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8730219D335C700EA408D /* BPTitleTableViewCell.m */; };
+		15B8730319D335C700EA408D /* BPTitleTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8730219D335C700EA408D /* BPTitleTableHeaderView.m */; };
 		15D5095B19D3DB67006056CE /* BPGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D5095A19D3DB67006056CE /* BPGradientView.m */; };
 		15F2883319D73288003FE877 /* BPPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F2883219D73288003FE877 /* BPPlayingViewController.m */; };
 		15F2883619D733CA003FE877 /* BPMediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F2883519D733CA003FE877 /* BPMediaPlayer.m */; };
@@ -41,10 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1521F2EE19D7CB4100823E05 /* BPTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPTitleView.xib; sourceTree = "<group>"; };
 		154D3D2219D47F88002ECE8B /* BPMediaLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMediaLibrary.h; sourceTree = "<group>"; };
 		154D3D2319D47F88002ECE8B /* BPMediaLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMediaLibrary.m; sourceTree = "<group>"; };
 		154D3D2519D481EB002ECE8B /* MenuStructure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuStructure.plist; sourceTree = "<group>"; };
-		154D3D2A19D483AB002ECE8B /* MenuStructure.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MenuStructure.storyboard; sourceTree = "<group>"; };
+		154D3D2A19D483AB002ECE8B /* Interface_Color.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface_Color.storyboard; sourceTree = "<group>"; };
 		1569205619D7BB2F007BE690 /* BPQuickReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPQuickReference.h; sourceTree = "<group>"; };
 		1569205719D7BB2F007BE690 /* BPQuickReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPQuickReference.m; sourceTree = "<group>"; };
 		15B872CE19D30BBD00EA408D /* TapWheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapWheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,8 +68,8 @@
 		15B872FC19D334C800EA408D /* BPListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPListViewController.m; sourceTree = "<group>"; };
 		15B872FE19D335B000EA408D /* BPiPodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPiPodTableViewCell.h; path = Views/BPiPodTableViewCell.h; sourceTree = "<group>"; };
 		15B872FF19D335B000EA408D /* BPiPodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPiPodTableViewCell.m; path = Views/BPiPodTableViewCell.m; sourceTree = "<group>"; };
-		15B8730119D335C700EA408D /* BPTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPTitleTableViewCell.h; path = Views/BPTitleTableViewCell.h; sourceTree = "<group>"; };
-		15B8730219D335C700EA408D /* BPTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPTitleTableViewCell.m; path = Views/BPTitleTableViewCell.m; sourceTree = "<group>"; };
+		15B8730119D335C700EA408D /* BPTitleTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPTitleTableHeaderView.h; path = Views/BPTitleTableHeaderView.h; sourceTree = "<group>"; };
+		15B8730219D335C700EA408D /* BPTitleTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPTitleTableHeaderView.m; path = Views/BPTitleTableHeaderView.m; sourceTree = "<group>"; };
 		15D5095919D3DB67006056CE /* BPGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPGradientView.h; path = Views/BPGradientView.h; sourceTree = "<group>"; };
 		15D5095A19D3DB67006056CE /* BPGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BPGradientView.m; path = Views/BPGradientView.m; sourceTree = "<group>"; };
 		15F2883119D73288003FE877 /* BPPlayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPPlayingViewController.h; sourceTree = "<group>"; };
@@ -140,7 +142,7 @@
 				15F2883419D733CA003FE877 /* BPMediaPlayer.h */,
 				15F2883519D733CA003FE877 /* BPMediaPlayer.m */,
 				15B872DB19D30BBD00EA408D /* Main.storyboard */,
-				154D3D2A19D483AB002ECE8B /* MenuStructure.storyboard */,
+				154D3D2A19D483AB002ECE8B /* Interface_Color.storyboard */,
 				15B872DE19D30BBD00EA408D /* Images.xcassets */,
 				15B872E019D30BBD00EA408D /* LaunchScreen.xib */,
 				15B872D119D30BBD00EA408D /* Supporting Files */,
@@ -184,14 +186,15 @@
 				15B872F819D3190C00EA408D /* BPClickWheelView.m */,
 				15B872FE19D335B000EA408D /* BPiPodTableViewCell.h */,
 				15B872FF19D335B000EA408D /* BPiPodTableViewCell.m */,
-				15B8730119D335C700EA408D /* BPTitleTableViewCell.h */,
-				15B8730219D335C700EA408D /* BPTitleTableViewCell.m */,
+				15B8730119D335C700EA408D /* BPTitleTableHeaderView.h */,
+				15B8730219D335C700EA408D /* BPTitleTableHeaderView.m */,
 				15D5095919D3DB67006056CE /* BPGradientView.h */,
 				15D5095A19D3DB67006056CE /* BPGradientView.m */,
 				15F2883819D7448D003FE877 /* BPTitleView.h */,
 				15F2883919D7448D003FE877 /* BPTitleView.m */,
 				15F2883B19D75F36003FE877 /* BPProgressView.h */,
 				15F2883C19D75F36003FE877 /* BPProgressView.m */,
+				1521F2EE19D7CB4100823E05 /* BPTitleView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -250,7 +253,7 @@
 		15B872C619D30BBD00EA408D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Bruno Philipe";
 				TargetAttributes = {
 					15B872CD19D30BBD00EA408D = {
@@ -290,7 +293,8 @@
 				15B872E219D30BBD00EA408D /* LaunchScreen.xib in Resources */,
 				15B872DF19D30BBD00EA408D /* Images.xcassets in Resources */,
 				154D3D2619D481EB002ECE8B /* MenuStructure.plist in Resources */,
-				154D3D2B19D483AB002ECE8B /* MenuStructure.storyboard in Resources */,
+				154D3D2B19D483AB002ECE8B /* Interface_Color.storyboard in Resources */,
+				1521F2EF19D7CB4100823E05 /* BPTitleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +355,7 @@
 				15B8730019D335B000EA408D /* BPiPodTableViewCell.m in Sources */,
 				15F2883D19D75F36003FE877 /* BPProgressView.m in Sources */,
 				15B872FD19D334C800EA408D /* BPListViewController.m in Sources */,
-				15B8730319D335C700EA408D /* BPTitleTableViewCell.m in Sources */,
+				15B8730319D335C700EA408D /* BPTitleTableHeaderView.m in Sources */,
 				15D5095B19D3DB67006056CE /* BPGradientView.m in Sources */,
 				15B872D419D30BBD00EA408D /* main.m in Sources */,
 				15F2883A19D7448D003FE877 /* BPTitleView.m in Sources */,
@@ -416,6 +420,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -430,7 +435,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -466,7 +471,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -481,6 +486,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TapWheel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brunophilipe.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -492,6 +498,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TapWheel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brunophilipe.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -510,6 +517,7 @@
 				);
 				INFOPLIST_FILE = TapWheelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brunophilipe.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapWheel.app/TapWheel";
 			};
@@ -525,6 +533,7 @@
 				);
 				INFOPLIST_FILE = TapWheelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brunophilipe.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TapWheel.app/TapWheel";
 			};

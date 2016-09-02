@@ -29,7 +29,7 @@
 
 	[self.clickWheel setDelegate:self];
 
-	[self setScreenViewController:[[UIStoryboard storyboardWithName:@"MenuStructure" bundle:nil] instantiateInitialViewController]];
+	[self setScreenViewController:[[UIStoryboard storyboardWithName:@"Interface_Color" bundle:nil] instantiateInitialViewController]];
 
 	[self.screenViewController willMoveToParentViewController:self];
 	[self.containerView addSubview:self.screenViewController.view];
@@ -37,6 +37,12 @@
 	[self didMoveToParentViewController:self];
 
 	[self.screenViewController.view setFrame:self.containerView.bounds];
+
+	[self.containerView addConstraint:[NSLayoutConstraint constraintWithItem:self.containerView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.screenViewController.view attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
+	[self.containerView addConstraint:[NSLayoutConstraint constraintWithItem:self.containerView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.screenViewController.view attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
+	[self.containerView addConstraint:[NSLayoutConstraint constraintWithItem:self.containerView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.screenViewController.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
+	[self.containerView addConstraint:[NSLayoutConstraint constraintWithItem:self.containerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.screenViewController.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,7 +50,7 @@
 	// Dispose of any resources that can be recreated.
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
 	return UIInterfaceOrientationMaskPortrait;
 }
