@@ -273,8 +273,17 @@
 	}
 	else if ([selectedItem isKindOfClass:[NSString class]])
 	{
-		[self performSegueWithIdentifier:[NSString stringWithFormat:@"show_%@", [selectedItem lowercaseString]]
-								  sender:self];
+		NSString *name = [NSString stringWithFormat:@"show_%@", [selectedItem lowercaseString]];
+
+		@try
+		{
+			[self performSegueWithIdentifier:name sender:self];
+		}
+		@catch (NSException *exception)
+		{
+			// Oops
+			NSLog(@"Oops! Tried performing non-existing segue with name: %@", name);
+		}
 	}
 }
 
