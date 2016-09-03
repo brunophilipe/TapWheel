@@ -90,8 +90,8 @@ short signum(double x);
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[self updateCurrentItemInformation];
-	[self updateCurrentPlaybackInformation];
+
+	[self updateUI];
 
 	[self setPlaybackInfoUpdateTimer:[NSTimer scheduledTimerWithTimeInterval:0.33 target:self selector:@selector(updateCurrentPlaybackInformation) userInfo:nil repeats:YES]];
 }
@@ -134,8 +134,19 @@ short signum(double x);
 
 		[self.label_trackNumber setText:[[BPMediaPlayer sharedPlayer] playingQueueDescription]];
 
-		[self.albumArtworkView setImage:[(MPMediaItemArtwork*)[item valueForProperty:MPMediaItemPropertyArtwork] imageWithSize:self.albumArtworkView.bounds.size]];
-	} else {
+		__weak typeof(self) weakself = self;
+
+		dispatch_async(dispatch_get_main_queue(), ^{
+			MPMediaItemArtwork *artwork = (MPMediaItemArtwork*)[item valueForProperty:MPMediaItemPropertyArtwork];
+
+			if (artwork != nil && weakself != nil)
+			{
+				[weakself.albumArtworkView setImage:[artwork imageWithSize:weakself.albumArtworkView.bounds.size]];
+			}
+		});
+	}
+	else
+	{
 		[self.label_trackTitle setText:@"Nothing is Playing"];
 		[self.label_artistName setText:@""];
 		[self.label_albumName setText:@""];
@@ -179,12 +190,22 @@ short signum(double x);
 	[self.volumeView setHidden:YES];
 }
 
+- (void)updateUI
+{
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self updateCurrentItemInformation];
+	});
+
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self updateCurrentPlaybackInformation];
+	});
+}
+
 #pragma Mark - Player State Changes Notifications
 
 - (void)playerStateChangedNotification:(NSNotification *)notification
 {
-	[self updateCurrentItemInformation];
-	[self updateCurrentPlaybackInformation];
+	[self updateUI];
 }
 
 #pragma mark - BPScrollable
@@ -208,13 +229,13 @@ short signum(double x);
 - (void)gotoNextLevel
 {
 	//There's no next level.
-	//TODO: Toggle volume control.
+	//TODO: Toggle skip control.
 	return;
 }
 
 - (void)gotoPreviousLevel
 {
-	[self.navigationController popViewControllerAnimated:YES];
+	[self.navigationController popViewControllerAnimated:NO];
 }
 
 @end

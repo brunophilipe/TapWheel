@@ -27,17 +27,16 @@
 
 @property (strong) NSString *title;
 
-@property BOOL didAppear;
-
 @end
 
 @implementation BPListViewController
 
 @dynamic title;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
+
 	[self.tableView registerClass:[BPTitleTableHeaderView class] forHeaderFooterViewReuseIdentifier:@"status_header"];
 
 	if ([self.contentID isEqualToString:@"root"])
@@ -99,8 +98,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+
 	NSUInteger previousRow = _selectedRow;
 	_selectedRow = 0;
+
 	[self selectRow:previousRow];
 }
 
@@ -114,7 +115,7 @@
 {
 	NSUInteger newRow = MIN(MAX(row, 0), self.elements.count-1);
 
-	NSLog(@"%ld", row);
+	NSLog(@"%ld", (unsigned long)row);
 
 	static short scrollCounter = 0;
 	UITableViewScrollPosition scrollPosition = UITableViewScrollPositionNone;
@@ -167,30 +168,38 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.elements.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
 	static NSString *identifier = @"cell_row";
     BPiPodTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
     // Configure the cell...
 	id element = [self.elements objectAtIndex:indexPath.row];
 	
-	if ([element isKindOfClass:[NSString class]]) {
+	if ([element isKindOfClass:[NSString class]])
+	{
 		[cell.titleLabel setText:element];
-	} else if ([element isKindOfClass:[MPContentItem class]]) {
+	}
+	else if ([element isKindOfClass:[MPContentItem class]])
+	{
 		[cell.titleLabel setText:[element title]];
-	} else if ([element isKindOfClass:[MPMediaItem class]]) {
+	}
+	else if ([element isKindOfClass:[MPMediaItem class]])
+	{
 		[cell.titleLabel setText:[element valueForProperty:self.displayProperty]];
-	} else if ([element isKindOfClass:[MPMediaItemCollection class]]) {
+	}
+	else if ([element isKindOfClass:[MPMediaItemCollection class]])
+	{
 		[cell.titleLabel setText:[[element representativeItem] valueForProperty:self.displayProperty]];
 	}
 

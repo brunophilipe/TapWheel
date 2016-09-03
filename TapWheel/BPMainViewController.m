@@ -23,29 +23,14 @@
 
 @implementation BPMainViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
 	[super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-
 	[self.clickWheel setDelegate:self];
-
-	[self setScreenViewController:[[UIStoryboard storyboardWithName:@"Interface_Color" bundle:nil] instantiateInitialViewController]];
-
-	[self.screenViewController willMoveToParentViewController:self];
-	[self.containerView addSubview:self.screenViewController.view];
-	[self addChildViewController:self.screenViewController];
-	[self didMoveToParentViewController:self];
-
-	[self.screenViewController.view setFrame:self.containerView.bounds];
-
-	[self.containerView addConstraint:[NSLayoutConstraint constraintWithItem:self.containerView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.screenViewController.view attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
-	[self.containerView addConstraint:[NSLayoutConstraint constraintWithItem:self.containerView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.screenViewController.view attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
-	[self.containerView addConstraint:[NSLayoutConstraint constraintWithItem:self.containerView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.screenViewController.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
-	[self.containerView addConstraint:[NSLayoutConstraint constraintWithItem:self.containerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.screenViewController.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
-
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
 }
@@ -76,6 +61,14 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
 	return UIStatusBarStyleLightContent;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"embed_ui_controller"])
+	{
+		[self setScreenViewController:[segue destinationViewController]];
+	}
 }
 
 #pragma mark - Click Wheel Delegate

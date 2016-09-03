@@ -70,9 +70,10 @@
         <!--Navigation Controller-->
         <scene sceneID="Bsr-7T-0lB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="JNZ-NU-zVS" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" navigationBarHidden="YES" id="JNZ-NU-zVS" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
+                    <value key="contentSizeForViewInPopover" type="size" width="238" height="178"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -261,7 +262,7 @@
         <!--List View Controller-->
         <scene sceneID="9kD-3T-4Pk">
             <objects>
-                <tableViewController automaticallyAdjustsScrollViewInsets="NO" clearsSelectionOnViewWillAppear="NO" id="QsA-Th-A77" customClass="BPListViewController" sceneMemberID="viewController">
+                <tableViewController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" clearsSelectionOnViewWillAppear="NO" id="QsA-Th-A77" customClass="BPListViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="0T3-U7-Pwx">
                         <rect key="frame" x="0.0" y="0.0" width="238" height="178"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -512,6 +513,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="h9m-Dv-4s6"/>
-        <segue reference="Wyp-xx-Qy2"/>
+        <segue reference="34d-1g-OIt"/>
     </inferredMetricsTieBreakers>
 </document>
