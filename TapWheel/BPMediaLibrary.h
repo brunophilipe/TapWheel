@@ -21,5 +21,8 @@
 
 - (NSArray*)listAlbums;
 - (NSArray*)listAlbumsByArtist:(NSNumber*)artistPersistentID;
+- (NSArray*)listSongsInPlaylist:(NSNumber*)playlistPersistentID;
+
+- (NSArray*)listPlaylists;
 
 @end

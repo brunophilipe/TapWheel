@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JNZ-NU-zVS">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
@@ -179,7 +178,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_full" translatesAutoresizingMaskIntoConstraints="NO" id="ltp-H7-oyB">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="battery_full" translatesAutoresizingMaskIntoConstraints="NO" id="ltp-H7-oyB">
                                         <rect key="frame" x="206" y="2" width="28" height="14"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-LI-NNI">
@@ -317,6 +316,7 @@
                         <segue destination="OYL-49-uTJ" kind="show" identifier="show_artists" animates="NO" id="ljh-dn-LGX"/>
                         <segue destination="9PX-OI-zh4" kind="show" identifier="show_songs" animates="NO" id="h9m-Dv-4s6"/>
                         <segue destination="VLZ-SA-DVx" kind="show" identifier="show_albums" animates="NO" id="34d-1g-OIt"/>
+                        <segue destination="DYY-BL-9Nm" kind="show" identifier="show_playlists" animates="NO" id="L1q-du-mtT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glP-Y7-mNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -506,13 +506,75 @@
             </objects>
             <point key="canvasLocation" x="1517" y="-99"/>
         </scene>
+        <!--List View Controller-->
+        <scene sceneID="Z39-eF-2Ae">
+            <objects>
+                <tableViewController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" clearsSelectionOnViewWillAppear="NO" id="DYY-BL-9Nm" customClass="BPListViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="cQo-5A-TNm">
+                        <rect key="frame" x="0.0" y="0.0" width="238" height="178"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="178" id="U5D-15-dNt"/>
+                            <constraint firstAttribute="width" constant="238" id="bJP-7d-3V3"/>
+                        </constraints>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell_row" id="ThV-vY-fop" customClass="BPiPodTableViewCell">
+                                <rect key="frame" x="0.0" y="18" width="238" height="20"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ThV-vY-fop" id="GYo-8j-lSu">
+                                    <rect key="frame" x="0.0" y="0.0" width="238" height="20"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="iPod" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byr-99-oRS">
+                                            <rect key="frame" x="5" y="0.0" width="233" height="20"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="byr-99-oRS" firstAttribute="top" secondItem="GYo-8j-lSu" secondAttribute="top" id="4W7-4X-ahM"/>
+                                        <constraint firstAttribute="trailing" secondItem="byr-99-oRS" secondAttribute="trailing" id="D8R-5s-MNq"/>
+                                        <constraint firstAttribute="bottom" secondItem="byr-99-oRS" secondAttribute="bottom" id="ZX0-hL-6Hq"/>
+                                        <constraint firstItem="byr-99-oRS" firstAttribute="leading" secondItem="GYo-8j-lSu" secondAttribute="leading" constant="5" id="sHv-za-y71"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabel" destination="byr-99-oRS" id="BMX-Jq-RLk"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="DYY-BL-9Nm" id="xUV-9o-TZl"/>
+                            <outlet property="delegate" destination="DYY-BL-9Nm" id="lKw-2T-BHy"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="zSq-8b-LQt"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="contentID" value="playlists"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Playlists"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="9PX-OI-zh4" kind="show" identifier="show_songs" animates="NO" id="Pic-hB-CpW"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pAK-2U-bzc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1163" y="400"/>
+        </scene>
     </scenes>
     <resources>
         <image name="battery_full" width="28" height="14"/>
         <image name="play" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="h9m-Dv-4s6"/>
         <segue reference="34d-1g-OIt"/>
+        <segue reference="Pic-hB-CpW"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -68,6 +68,14 @@
 	}
 }
 
+- (NSArray*)listSongsInPlaylist:(NSNumber*)playlistPersistentID
+{
+	MPMediaQuery *query = [MPMediaQuery songsQuery];
+	[query addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:playlistPersistentID forProperty:MPMediaPlaylistPropertyPersistentID]];
+	NSArray *items = [query items];
+	return items;
+}
+
 #pragma mark - List Albums
 
 - (NSArray*)listAlbums
@@ -82,6 +90,14 @@
 		[query addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:artistPersistentID forProperty:MPMediaItemPropertyAlbumArtistPersistentID]];
 	}
 	[query setGroupingType:MPMediaGroupingAlbum];
+	return [query collections];
+}
+
+#pragma mark - List Playlists
+
+- (NSArray*)listPlaylists
+{
+	MPMediaQuery *query = [MPMediaQuery playlistsQuery];
 	return [query collections];
 }
 

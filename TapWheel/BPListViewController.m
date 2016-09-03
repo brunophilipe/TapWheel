@@ -68,6 +68,11 @@
 				// Show all songs by an artist
 				self.elements = [[BPMediaLibrary sharedLibrary] listSongsByArtist:self.contentPredicateValue];
 			}
+			else if ([self.contentPredicateKey isEqualToString:MPMediaPlaylistPropertyPersistentID])
+			{
+				// Show all songs in a playlist
+				self.elements = [[BPMediaLibrary sharedLibrary] listSongsInPlaylist:self.contentPredicateValue];
+			}
 			self.displayProperty = MPMediaItemPropertyTitle;
 		}
 		else
@@ -80,7 +85,7 @@
 	}
 	else if ([self.contentID isEqualToString:@"albums"])
 	{
-		// Albums two kinds of groupings: all albums and albums by an artist
+		// Albums have two kinds of groupings: all albums and albums by an artist
 		if (self.contentPredicateValue)
 		{
 			self.elements = [[BPMediaLibrary sharedLibrary] listAlbumsByArtist:self.contentPredicateValue];
@@ -90,6 +95,12 @@
 			self.elements = [[BPMediaLibrary sharedLibrary] listAlbums];
 		}
 		self.displayProperty = MPMediaItemPropertyAlbumTitle;
+	}
+	else if ([self.contentID isEqualToString:@"playlists"])
+	{
+		//Playlists have no higher level grouping
+		self.elements = [[BPMediaLibrary sharedLibrary] listPlaylists];
+		self.displayProperty = MPMediaPlaylistPropertyName;
 	}
 
 	_selectedRow = 0;
@@ -198,6 +209,11 @@
 	{
 		[cell.titleLabel setText:[element valueForProperty:self.displayProperty]];
 	}
+	else if ([element isKindOfClass:[MPMediaPlaylist class]])
+	{
+		MPMediaPlaylist *playlist = element;
+		[cell.titleLabel setText:[playlist valueForProperty:self.displayProperty]];
+	}
 	else if ([element isKindOfClass:[MPMediaItemCollection class]])
 	{
 		[cell.titleLabel setText:[[element representativeItem] valueForProperty:self.displayProperty]];
@@ -228,7 +244,7 @@
 
 - (void)gotoNextLevel
 {
-	NSString *selectedItem = [self.elements objectAtIndex:_selectedRow];
+	id selectedItem = [self.elements objectAtIndex:_selectedRow];
 
 	if ([self.contentID isEqualToString:@"artists"])
 	{
@@ -238,18 +254,27 @@
 	{
 		[self performSegueWithIdentifier:@"show_songs" sender:self];
 	}
+	else if ([self.contentID isEqualToString:@"playlists"])
+	{
+		[self performSegueWithIdentifier:@"show_songs" sender:self];
+	}
 	else if ([selectedItem isKindOfClass:[MPMediaItem class]])
 	{
-		[[BPMediaPlayer sharedPlayer] playCollection:[MPMediaItemCollection collectionWithItems:self.elements] withCurrentItemIndex:_selectedRow];
-		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController] animated:NO];
+		[[BPMediaPlayer sharedPlayer] playCollection:[MPMediaItemCollection collectionWithItems:self.elements]
+								withCurrentItemIndex:_selectedRow];
+
+		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController]
+											 animated:NO];
 	}
 	else if ([selectedItem isEqual:@"Now Playing"])
 	{
-		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController] animated:NO];
+		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController]
+											 animated:NO];
 	}
-	else
+	else if ([selectedItem isKindOfClass:[NSString class]])
 	{
-		[self performSegueWithIdentifier:[NSString stringWithFormat:@"show_%@", [selectedItem lowercaseString]] sender:self];
+		[self performSegueWithIdentifier:[NSString stringWithFormat:@"show_%@", [selectedItem lowercaseString]]
+								  sender:self];
 	}
 }
 
@@ -260,18 +285,29 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	if ([self.contentID isEqualToString:@"artists"]) {
+	if ([self.contentID isEqualToString:@"artists"])
+	{
 		// Going to show albums
 		MPMediaItemCollection *selectedItem = [self.elements objectAtIndex:_selectedRow];
 		[(BPListViewController*)segue.destinationViewController setTitle:[[selectedItem representativeItem] valueForProperty:MPMediaItemPropertyAlbumArtist]];
 		[(BPListViewController*)segue.destinationViewController setContentPredicateKey:MPMediaItemPropertyAlbumArtistPersistentID];
 		[(BPListViewController*)segue.destinationViewController setContentPredicateValue:@([[selectedItem representativeItem] albumArtistPersistentID])];
-	} else if ([self.contentID isEqualToString:@"albums"]) {
+	}
+	else if ([self.contentID isEqualToString:@"albums"])
+	{
 		// Going to show songs
 		MPMediaItemCollection *selectedItem = [self.elements objectAtIndex:_selectedRow];
 		[(BPListViewController*)segue.destinationViewController setTitle:[[selectedItem representativeItem] valueForProperty:MPMediaItemPropertyAlbumTitle]];
 		[(BPListViewController*)segue.destinationViewController setContentPredicateKey:MPMediaItemPropertyAlbumPersistentID];
 		[(BPListViewController*)segue.destinationViewController setContentPredicateValue:@([[selectedItem representativeItem] albumPersistentID])];
+	}
+	else if ([self.contentID isEqualToString:@"playlists"])
+	{
+		// Going to show playlists
+		MPMediaPlaylist *selectedItem = [self.elements objectAtIndex:_selectedRow];
+		[(BPListViewController*)segue.destinationViewController setTitle:[selectedItem valueForProperty:MPMediaPlaylistPropertyName]];
+		[(BPListViewController*)segue.destinationViewController setContentPredicateKey:MPMediaPlaylistPropertyPersistentID];
+		[(BPListViewController*)segue.destinationViewController setContentPredicateValue:@([selectedItem persistentID])];
 	}
 }
 
