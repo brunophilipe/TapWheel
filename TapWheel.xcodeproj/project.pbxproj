@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1521F2EF19D7CB4100823E05 /* BPTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1521F2EE19D7CB4100823E05 /* BPTitleView.xib */; };
-		153FF00F1D7A7B9800DDAD1D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 153FF00E1D7A7B9800DDAD1D /* README.md */; };
 		154D3D2419D47F88002ECE8B /* BPMediaLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 154D3D2319D47F88002ECE8B /* BPMediaLibrary.m */; };
 		154D3D2619D481EB002ECE8B /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154D3D2519D481EB002ECE8B /* MenuStructure.plist */; };
 		154D3D2B19D483AB002ECE8B /* Interface_Color.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 154D3D2A19D483AB002ECE8B /* Interface_Color.storyboard */; };
@@ -360,7 +359,6 @@
 				15B872FD19D334C800EA408D /* BPListViewController.m in Sources */,
 				15B8730319D335C700EA408D /* BPTitleTableHeaderView.m in Sources */,
 				15D5095B19D3DB67006056CE /* BPGradientView.m in Sources */,
-				153FF00F1D7A7B9800DDAD1D /* README.md in Sources */,
 				15B872D419D30BBD00EA408D /* main.m in Sources */,
 				15F2883A19D7448D003FE877 /* BPTitleView.m in Sources */,
 			);
