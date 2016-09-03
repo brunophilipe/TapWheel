@@ -192,9 +192,9 @@
 				15D5095A19D3DB67006056CE /* BPGradientView.m */,
 				15F2883819D7448D003FE877 /* BPTitleView.h */,
 				15F2883919D7448D003FE877 /* BPTitleView.m */,
+				1521F2EE19D7CB4100823E05 /* BPTitleView.xib */,
 				15F2883B19D75F36003FE877 /* BPProgressView.h */,
 				15F2883C19D75F36003FE877 /* BPProgressView.m */,
-				1521F2EE19D7CB4100823E05 /* BPTitleView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";

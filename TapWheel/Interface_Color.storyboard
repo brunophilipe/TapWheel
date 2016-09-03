@@ -8,14 +8,10 @@
         <scene sceneID="MTc-zl-th7">
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" clearsSelectionOnViewWillAppear="NO" id="Y1H-q4-llT" customClass="BPListViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="25D-A8-5bT">
+                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="25D-A8-5bT">
                         <rect key="frame" x="0.0" y="0.0" width="238" height="178"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="238" id="G6T-Us-mQ3"/>
-                            <constraint firstAttribute="height" constant="178" id="GWN-7E-gui"/>
-                        </constraints>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell_row" id="GRE-QS-KXW" customClass="BPiPodTableViewCell">
@@ -59,7 +55,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="iPod"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <segue destination="QsA-Th-A77" kind="show" identifier="show_music" animates="NO" id="ebb-lg-Is8"/>
+                        <segue destination="QsA-Th-A77" kind="show" identifier="show_music" id="ebb-lg-Is8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wzH-WT-E3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -69,7 +65,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Bsr-7T-0lB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" navigationBarHidden="YES" id="JNZ-NU-zVS" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalPresentationStyle="currentContext" navigationBarHidden="YES" id="JNZ-NU-zVS" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <value key="contentSizeForViewInPopover" type="size" width="238" height="178"/>
@@ -180,6 +176,10 @@
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_full" translatesAutoresizingMaskIntoConstraints="NO" id="ltp-H7-oyB">
                                         <rect key="frame" x="206" y="2" width="28" height="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="28" id="Mar-JA-dLR"/>
+                                            <constraint firstAttribute="height" constant="14" id="lzK-NY-4lZ"/>
+                                        </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-LI-NNI">
                                         <rect key="frame" x="5" y="2" width="14" height="14"/>
@@ -262,14 +262,10 @@
         <scene sceneID="9kD-3T-4Pk">
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" clearsSelectionOnViewWillAppear="NO" id="QsA-Th-A77" customClass="BPListViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="0T3-U7-Pwx">
+                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="0T3-U7-Pwx">
                         <rect key="frame" x="0.0" y="0.0" width="238" height="178"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="178" id="TEy-li-oWI"/>
-                            <constraint firstAttribute="width" constant="238" id="UaN-cX-7Us"/>
-                        </constraints>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell_row" id="XDc-Gu-XBW" customClass="BPiPodTableViewCell">
@@ -313,10 +309,10 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Music"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <segue destination="OYL-49-uTJ" kind="show" identifier="show_artists" animates="NO" id="ljh-dn-LGX"/>
-                        <segue destination="9PX-OI-zh4" kind="show" identifier="show_songs" animates="NO" id="h9m-Dv-4s6"/>
-                        <segue destination="VLZ-SA-DVx" kind="show" identifier="show_albums" animates="NO" id="34d-1g-OIt"/>
-                        <segue destination="DYY-BL-9Nm" kind="show" identifier="show_playlists" animates="NO" id="L1q-du-mtT"/>
+                        <segue destination="OYL-49-uTJ" kind="show" identifier="show_artists" id="ljh-dn-LGX"/>
+                        <segue destination="9PX-OI-zh4" kind="show" identifier="show_songs" id="h9m-Dv-4s6"/>
+                        <segue destination="VLZ-SA-DVx" kind="show" identifier="show_albums" id="34d-1g-OIt"/>
+                        <segue destination="DYY-BL-9Nm" kind="show" identifier="show_playlists" id="L1q-du-mtT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glP-Y7-mNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -327,14 +323,10 @@
         <scene sceneID="G9d-kV-16V">
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" clearsSelectionOnViewWillAppear="NO" id="OYL-49-uTJ" customClass="BPListViewController" sceneMemberID="viewController">
-                    <tableView key="view" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="3QT-gf-TYH">
+                    <tableView key="view" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="3QT-gf-TYH">
                         <rect key="frame" x="0.0" y="0.0" width="238" height="178"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="178" id="CyE-pb-R4c"/>
-                            <constraint firstAttribute="width" constant="238" id="S5e-G0-igf"/>
-                        </constraints>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell_row" id="i22-oW-em1" customClass="BPiPodTableViewCell">
@@ -378,7 +370,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Artists"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <segue destination="VLZ-SA-DVx" kind="show" identifier="show_albums" animates="NO" id="Wyp-xx-Qy2"/>
+                        <segue destination="VLZ-SA-DVx" kind="show" identifier="show_albums" id="Wyp-xx-Qy2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rcy-jn-THS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -389,14 +381,10 @@
         <scene sceneID="2bB-2D-w2R">
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" clearsSelectionOnViewWillAppear="NO" id="9PX-OI-zh4" customClass="BPListViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="3OB-E8-vql">
+                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="3OB-E8-vql">
                         <rect key="frame" x="0.0" y="0.0" width="238" height="178"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="238" id="MLM-0M-9k6"/>
-                            <constraint firstAttribute="height" constant="178" id="btb-dz-fBV"/>
-                        </constraints>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell_row" id="ext-1C-38l" customClass="BPiPodTableViewCell">
@@ -448,14 +436,10 @@
         <scene sceneID="4BD-P8-cvg">
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" clearsSelectionOnViewWillAppear="NO" id="VLZ-SA-DVx" customClass="BPListViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="kd0-Gb-2cu">
+                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="kd0-Gb-2cu">
                         <rect key="frame" x="0.0" y="0.0" width="238" height="178"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="238" id="bKe-AZ-jGG"/>
-                            <constraint firstAttribute="height" constant="178" id="l4t-au-Iww"/>
-                        </constraints>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell_row" id="gcN-rp-rEG" customClass="BPiPodTableViewCell">
@@ -499,7 +483,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Albums"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <segue destination="9PX-OI-zh4" kind="show" identifier="show_songs" animates="NO" id="LTw-MQ-yLo"/>
+                        <segue destination="9PX-OI-zh4" kind="show" identifier="show_songs" id="LTw-MQ-yLo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wC-Vr-4kr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -510,14 +494,10 @@
         <scene sceneID="Z39-eF-2Ae">
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" clearsSelectionOnViewWillAppear="NO" id="DYY-BL-9Nm" customClass="BPListViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="cQo-5A-TNm">
+                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="cQo-5A-TNm">
                         <rect key="frame" x="0.0" y="0.0" width="238" height="178"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="178" id="U5D-15-dNt"/>
-                            <constraint firstAttribute="width" constant="238" id="bJP-7d-3V3"/>
-                        </constraints>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell_row" id="ThV-vY-fop" customClass="BPiPodTableViewCell">
@@ -561,7 +541,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Playlists"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <segue destination="9PX-OI-zh4" kind="show" identifier="show_songs" animates="NO" id="Pic-hB-CpW"/>
+                        <segue destination="9PX-OI-zh4" kind="show" identifier="show_songs" id="Pic-hB-CpW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pAK-2U-bzc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -574,7 +554,7 @@
         <image name="play" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="34d-1g-OIt"/>
-        <segue reference="Pic-hB-CpW"/>
+        <segue reference="Wyp-xx-Qy2"/>
+        <segue reference="LTw-MQ-yLo"/>
     </inferredMetricsTieBreakers>
 </document>

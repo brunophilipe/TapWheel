@@ -181,7 +181,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+	return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -264,12 +264,12 @@
 								withCurrentItemIndex:_selectedRow];
 
 		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController]
-											 animated:NO];
+											 animated:YES];
 	}
 	else if ([selectedItem isEqual:@"Now Playing"])
 	{
 		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController]
-											 animated:NO];
+											 animated:YES];
 	}
 	else if ([selectedItem isKindOfClass:[NSString class]])
 	{
@@ -280,7 +280,7 @@
 
 - (void)gotoPreviousLevel
 {
-	[self.navigationController popViewControllerAnimated:NO];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

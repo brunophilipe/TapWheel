@@ -235,7 +235,7 @@ short signum(double x);
 
 - (void)gotoPreviousLevel
 {
-	[self.navigationController popViewControllerAnimated:NO];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
