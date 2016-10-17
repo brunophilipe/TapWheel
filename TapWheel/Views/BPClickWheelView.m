@@ -156,8 +156,6 @@ BOOL BPEllipsisWithRectContainsPoint(CGRect rect, CGPoint point);
 	CGFloat currentRadian = [self radianFromCenterForTapAtLocation:tapLocation];
 	short currentSector = MIN(currentRadian / BPDegreesToRadians(kBPDialSegmentSize), 17);
 
-	NSLog(@"%d", currentSector);
-
 	if (previousSector == 0 && currentSector == floor(359/kBPDialSegmentSize))
 	{ // Down
 		[self.delegate clickWheel:self didScrollInDirection:kBPScrollDirectionDown];

@@ -126,8 +126,6 @@
 {
 	NSUInteger newRow = MIN(MAX(row, 0), self.elements.count-1);
 
-	NSLog(@"%ld", (unsigned long)row);
-
 	static short scrollCounter = 0;
 	UITableViewScrollPosition scrollPosition = UITableViewScrollPositionNone;
 
