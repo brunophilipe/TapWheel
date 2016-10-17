@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+IB_DESIGNABLE
 @interface BPGradientView : UIView
+
+IBInspectable
+@property (atomic, strong) UIColor *topColor;
+
+IBInspectable
+@property (atomic, strong) UIColor *bottomColor;
 
 - (id)initWithFrame:(CGRect)frame topColor:(UIColor*)topColor andBottomColor:(UIColor*)bottomColor;
 

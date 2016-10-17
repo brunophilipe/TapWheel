@@ -9,9 +9,6 @@
 #import "BPGradientView.h"
 
 @implementation BPGradientView
-{
-	UIColor *_topColor, *_botColor;
-}
 
 - (id)initWithFrame:(CGRect)frame topColor:(UIColor*)topColor andBottomColor:(UIColor*)bottomColor
 {
@@ -30,22 +27,23 @@
 
 - (void)setGradientBottomColor:(UIColor*)bottomColor
 {
-	_botColor = bottomColor;
+	_bottomColor = bottomColor;
 }
 
-- (void)drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect
+{
 	// Drawing code
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	CGContextRef context = UIGraphicsGetCurrentContext();
 
 	//// Color Declarations
-	if (!_topColor || !_botColor) {
+	if (!_topColor || !_bottomColor) {
 		_topColor = [UIColor colorWithRed: 0.978 green: 0.978 blue: 0.978 alpha: 1];
-		_botColor = [UIColor colorWithRed: 0.718 green: 0.71 blue: 0.714 alpha: 1];
+		_bottomColor = [UIColor colorWithRed: 0.718 green: 0.71 blue: 0.714 alpha: 1];
 	}
 
 	//// Gradient Declarations
-	NSArray *gradientColors = [NSArray arrayWithObjects:(id)_topColor.CGColor, (id)_botColor.CGColor, nil];
+	NSArray *gradientColors = [NSArray arrayWithObjects:(id)_topColor.CGColor, (id)_bottomColor.CGColor, nil];
 	CGFloat gradientLocations[] = {0, 1};
 	CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)gradientColors, gradientLocations);
 
