@@ -124,6 +124,11 @@
 
 - (BOOL)selectRow:(NSUInteger)row
 {
+	if (self.elements.count == 0)
+	{
+		return NO;
+	}
+
 	NSUInteger newRow = MIN(MAX(row, 0), self.elements.count-1);
 
 	static short scrollCounter = 0;
