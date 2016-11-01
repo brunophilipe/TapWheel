@@ -249,19 +249,7 @@
 {
 	id selectedItem = [self.elements objectAtIndex:_selectedRow];
 
-	if ([self.contentID isEqualToString:@"artists"])
-	{
-		[self performSegueWithIdentifier:@"show_albums" sender:self];
-	}
-	else if ([self.contentID isEqualToString:@"albums"])
-	{
-		[self performSegueWithIdentifier:@"show_songs" sender:self];
-	}
-	else if ([self.contentID isEqualToString:@"playlists"])
-	{
-		[self performSegueWithIdentifier:@"show_songs" sender:self];
-	}
-	else if ([selectedItem isKindOfClass:[MPMediaItem class]])
+	if ([selectedItem isKindOfClass:[MPMediaItem class]])
 	{
 		[[BPMediaPlayer sharedPlayer] playCollection:[MPMediaItemCollection collectionWithItems:self.elements]
 								withCurrentItemIndex:_selectedRow];
@@ -274,18 +262,52 @@
 		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController]
 											 animated:YES];
 	}
-	else if ([selectedItem isKindOfClass:[NSString class]])
+	else
 	{
-		NSString *name = [NSString stringWithFormat:@"show_%@", [selectedItem lowercaseString]];
+		NSString	*newContentID = nil;
+		NSString	*newTitle = nil;
+		NSString	*newPredicateKey = nil;
+		id			newPredicateValue = nil;
 
-		@try
+		NSString *context = self.contentID;
+
+		if ([@[@"root", @"music"] containsObject:context] && [selectedItem isKindOfClass:[NSString class]])
 		{
-			[self performSegueWithIdentifier:name sender:self];
+			newContentID = [selectedItem lowercaseString];
+			newTitle = selectedItem;
 		}
-		@catch (NSException *exception)
+		else if ([context isEqualToString:@"artists"])
 		{
-			// Oops
-			NSLog(@"Oops! Tried performing non-existing segue with name: %@", name);
+			newContentID = @"albums";
+			newTitle = [[selectedItem representativeItem] valueForProperty:MPMediaItemPropertyAlbumArtist];
+			newPredicateKey = MPMediaItemPropertyAlbumArtistPersistentID;
+			newPredicateValue = @([[selectedItem representativeItem] albumArtistPersistentID]);
+		}
+		else if ([context isEqualToString:@"albums"])
+		{
+			newContentID = @"songs";
+			newTitle = [[selectedItem representativeItem] valueForProperty:MPMediaItemPropertyAlbumTitle];
+			newPredicateKey = MPMediaItemPropertyAlbumPersistentID;
+			newPredicateValue = @([[selectedItem representativeItem] albumPersistentID]);
+		}
+		else if ([context isEqualToString:@"playlists"])
+		{
+			newContentID = @"songs";
+			newTitle = [selectedItem valueForProperty:MPMediaPlaylistPropertyName];
+			newPredicateKey = MPMediaPlaylistPropertyPersistentID;
+			newPredicateValue = @([selectedItem persistentID]);
+		}
+
+		if (newContentID != nil)
+		{
+			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Interface_Color" bundle:nil];
+			BPListViewController *listController = [storyboard instantiateViewControllerWithIdentifier:@"list_view"];
+			[listController setContentID:newContentID];
+			[listController setTitle:newTitle];
+			[listController setContentPredicateKey:newPredicateKey];
+			[listController setContentPredicateValue:newPredicateValue];
+
+			[[self navigationController] pushViewController:listController animated:YES];
 		}
 	}
 }
@@ -297,30 +319,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	if ([self.contentID isEqualToString:@"artists"])
-	{
-		// Going to show albums
-		MPMediaItemCollection *selectedItem = [self.elements objectAtIndex:_selectedRow];
-		[(BPListViewController*)segue.destinationViewController setTitle:[[selectedItem representativeItem] valueForProperty:MPMediaItemPropertyAlbumArtist]];
-		[(BPListViewController*)segue.destinationViewController setContentPredicateKey:MPMediaItemPropertyAlbumArtistPersistentID];
-		[(BPListViewController*)segue.destinationViewController setContentPredicateValue:@([[selectedItem representativeItem] albumArtistPersistentID])];
-	}
-	else if ([self.contentID isEqualToString:@"albums"])
-	{
-		// Going to show songs
-		MPMediaItemCollection *selectedItem = [self.elements objectAtIndex:_selectedRow];
-		[(BPListViewController*)segue.destinationViewController setTitle:[[selectedItem representativeItem] valueForProperty:MPMediaItemPropertyAlbumTitle]];
-		[(BPListViewController*)segue.destinationViewController setContentPredicateKey:MPMediaItemPropertyAlbumPersistentID];
-		[(BPListViewController*)segue.destinationViewController setContentPredicateValue:@([[selectedItem representativeItem] albumPersistentID])];
-	}
-	else if ([self.contentID isEqualToString:@"playlists"])
-	{
-		// Going to show playlists
-		MPMediaPlaylist *selectedItem = [self.elements objectAtIndex:_selectedRow];
-		[(BPListViewController*)segue.destinationViewController setTitle:[selectedItem valueForProperty:MPMediaPlaylistPropertyName]];
-		[(BPListViewController*)segue.destinationViewController setContentPredicateKey:MPMediaPlaylistPropertyPersistentID];
-		[(BPListViewController*)segue.destinationViewController setContentPredicateValue:@([selectedItem persistentID])];
-	}
+	[super prepareForSegue:segue sender:sender];
 }
 
 @end
