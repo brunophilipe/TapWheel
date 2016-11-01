@@ -19,7 +19,8 @@
 - (id)init
 {
 	self = [super init];
-	if (self) {
+	if (self)
+	{
 		_mediaPlayer = [[MPMusicPlayerController systemMusicPlayer] retain];
 	}
 	return self;
@@ -31,6 +32,9 @@
 	[super dealloc];
 }
 
+/**
+ *	This method uses a private library to get how many songs are in the current play queue
+ */
 - (NSString*)playingQueueDescription
 {
 	#ifndef DEBUG
@@ -43,7 +47,7 @@
 	NSUInteger voidIndex = (NSUInteger)[_mediaPlayer performSelector:selectorIndex];
 	NSUInteger voidCount = (NSUInteger)[_mediaPlayer performSelector:selectorCount];
 
-	NSString *result = [[NSString stringWithFormat:@"%lu of %lu", voidIndex+1, (unsigned long)voidCount] retain];
+	NSString *result = [[NSString stringWithFormat:@"%lu of %lu", (unsigned long)voidIndex+1, (unsigned long)voidCount] retain];
 
 	return result;
 }

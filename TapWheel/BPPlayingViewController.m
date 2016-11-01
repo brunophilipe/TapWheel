@@ -133,8 +133,11 @@ short signum(double x);
 
 - (void)updateCurrentItemInformation
 {
-	MPMediaItem *item = [[BPMediaPlayer sharedPlayer] nowPlayingItem];
+	[self showInformationForItem:[[BPMediaPlayer sharedPlayer] nowPlayingItem]];
+}
 
+- (void)showInformationForItem:(MPMediaItem*)item
+{
 	if (item)
 	{
 		[self.label_trackTitle setText:[item valueForProperty:MPMediaItemPropertyTitle]];

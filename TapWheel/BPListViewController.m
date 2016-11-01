@@ -254,7 +254,10 @@
 		[[BPMediaPlayer sharedPlayer] playCollection:[MPMediaItemCollection collectionWithItems:self.elements]
 								withCurrentItemIndex:_selectedRow];
 
-		[self.navigationController pushViewController:[BPPlayingViewController sharedPlayingViewController]
+		BPPlayingViewController *playingController = [BPPlayingViewController sharedPlayingViewController];
+		[playingController showInformationForItem:[self.elements objectAtIndex:_selectedRow]];
+
+		[self.navigationController pushViewController:playingController
 											 animated:YES];
 	}
 	else if ([selectedItem isEqual:@"Now Playing"])

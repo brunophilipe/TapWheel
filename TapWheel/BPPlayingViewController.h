@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "BPProtocols.h"
 
 @interface BPPlayingViewController : UIViewController <BPNavigateable, BPScrollable, BPPlayerNotificationsReceiver>
 
 + (BPPlayingViewController *)sharedPlayingViewController;
+
+- (void)showInformationForItem:(MPMediaItem*)item;
 
 @end
