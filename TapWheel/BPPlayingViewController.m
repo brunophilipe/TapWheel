@@ -49,7 +49,8 @@ short signum(double x);
 	}
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
@@ -70,6 +71,12 @@ short signum(double x);
 	[_volumeView setBackgroundColor:[UIColor clearColor]];
 
 	[self setVolumeSlider:[self sliderUnderView:_volumeView]];
+
+	CALayer *albumArtworkLayer = [_albumArtworkView layer];
+	[albumArtworkLayer setShadowColor:[[UIColor darkGrayColor] CGColor]];
+	[albumArtworkLayer setShadowOpacity:0.33];
+	[albumArtworkLayer setShadowOffset:CGSizeMake(0, 2)];
+	[albumArtworkLayer setShadowRadius:1.0];
 }
 
 - (UISlider*)sliderUnderView:(UIView*)view
@@ -78,8 +85,10 @@ short signum(double x);
 	NSArray *subviews;
 
 	subviews = view.subviews;
-	for (UIView *subview in subviews) {
-		if ([subview isKindOfClass:[UISlider class]]) {
+	for (UIView *subview in subviews)
+	{
+		if ([subview isKindOfClass:[UISlider class]])
+		{
 			slider = (UISlider*)subview;
 		}
 	}
