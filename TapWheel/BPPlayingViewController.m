@@ -144,7 +144,7 @@ short signum(double x);
 		[self.label_artistName setText:[item valueForProperty:MPMediaItemPropertyArtist]];
 		[self.label_albumName setText:[item valueForProperty:MPMediaItemPropertyAlbumTitle]];
 
-		[self.label_trackNumber setText:[[BPMediaPlayer sharedPlayer] playingQueueDescription]];
+		[self.label_trackNumber setAttributedText:[[BPMediaPlayer sharedPlayer] playingQueueDescription]];
 
 		__weak typeof(self) weakself = self;
 

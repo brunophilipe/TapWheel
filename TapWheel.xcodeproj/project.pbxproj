@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1521F2EF19D7CB4100823E05 /* BPTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1521F2EE19D7CB4100823E05 /* BPTitleView.xib */; };
+		1521F2EF19D7CB4100823E05 /* BPTitleView_Color.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1521F2EE19D7CB4100823E05 /* BPTitleView_Color.xib */; };
 		154D3D2419D47F88002ECE8B /* BPMediaLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 154D3D2319D47F88002ECE8B /* BPMediaLibrary.m */; };
 		154D3D2619D481EB002ECE8B /* MenuStructure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 154D3D2519D481EB002ECE8B /* MenuStructure.plist */; };
 		154D3D2B19D483AB002ECE8B /* Interface_Color.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 154D3D2A19D483AB002ECE8B /* Interface_Color.storyboard */; };
 		1569205819D7BB2F007BE690 /* BPQuickReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1569205719D7BB2F007BE690 /* BPQuickReference.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1569D37C1DCA9EE9003EA21F /* BPInterfaceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1569D37B1DCA9EE9003EA21F /* BPInterfaceLoader.m */; };
+		1569D37E1DCAA076003EA21F /* BPTitleView_BlueAndGrey.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1569D37D1DCAA076003EA21F /* BPTitleView_BlueAndGrey.xib */; };
+		1569D3801DCAA349003EA21F /* Interface_BlueAndGrey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1569D37F1DCAA349003EA21F /* Interface_BlueAndGrey.storyboard */; };
+		15A69F831DCA894000BB6EB2 /* ChicagoFLF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15A69F811DCA894000BB6EB2 /* ChicagoFLF.ttf */; };
 		15B872D419D30BBD00EA408D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872D319D30BBD00EA408D /* main.m */; };
 		15B872D719D30BBD00EA408D /* BPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872D619D30BBD00EA408D /* BPAppDelegate.m */; };
 		15B872DA19D30BBD00EA408D /* BPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B872D919D30BBD00EA408D /* BPMainViewController.m */; };
@@ -42,7 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1521F2EE19D7CB4100823E05 /* BPTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPTitleView.xib; sourceTree = "<group>"; };
+		1521F2EE19D7CB4100823E05 /* BPTitleView_Color.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPTitleView_Color.xib; sourceTree = "<group>"; };
 		153FF00E1D7A7B9800DDAD1D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		154D3D2219D47F88002ECE8B /* BPMediaLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMediaLibrary.h; sourceTree = "<group>"; };
 		154D3D2319D47F88002ECE8B /* BPMediaLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPMediaLibrary.m; sourceTree = "<group>"; };
@@ -50,6 +54,11 @@
 		154D3D2A19D483AB002ECE8B /* Interface_Color.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface_Color.storyboard; sourceTree = "<group>"; };
 		1569205619D7BB2F007BE690 /* BPQuickReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPQuickReference.h; sourceTree = "<group>"; };
 		1569205719D7BB2F007BE690 /* BPQuickReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPQuickReference.m; sourceTree = "<group>"; };
+		1569D37A1DCA9EE9003EA21F /* BPInterfaceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPInterfaceLoader.h; sourceTree = "<group>"; };
+		1569D37B1DCA9EE9003EA21F /* BPInterfaceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPInterfaceLoader.m; sourceTree = "<group>"; };
+		1569D37D1DCAA076003EA21F /* BPTitleView_BlueAndGrey.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BPTitleView_BlueAndGrey.xib; sourceTree = "<group>"; };
+		1569D37F1DCAA349003EA21F /* Interface_BlueAndGrey.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interface_BlueAndGrey.storyboard; sourceTree = "<group>"; };
+		15A69F811DCA894000BB6EB2 /* ChicagoFLF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChicagoFLF.ttf; sourceTree = "<group>"; };
 		15B872CE19D30BBD00EA408D /* TapWheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapWheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B872D219D30BBD00EA408D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B872D319D30BBD00EA408D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -105,6 +114,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15A69F801DCA894000BB6EB2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				15A69F811DCA894000BB6EB2 /* ChicagoFLF.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		15B872C519D30BBD00EA408D = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +129,7 @@
 				15B872EA19D30BBD00EA408D /* TapWheelTests */,
 				15B872CF19D30BBD00EA408D /* Products */,
 				B10F0B69B2234629AD549362 /* Pods-TapWheel.xcconfig */,
+				15A69F801DCA894000BB6EB2 /* Fonts */,
 				FEE2198AF7CC420BBD97BE87 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -144,11 +162,14 @@
 				15F2883519D733CA003FE877 /* BPMediaPlayer.m */,
 				15B872DB19D30BBD00EA408D /* Main.storyboard */,
 				154D3D2A19D483AB002ECE8B /* Interface_Color.storyboard */,
+				1569D37F1DCAA349003EA21F /* Interface_BlueAndGrey.storyboard */,
 				15B872DE19D30BBD00EA408D /* Images.xcassets */,
 				15B872E019D30BBD00EA408D /* LaunchScreen.xib */,
 				15B872D119D30BBD00EA408D /* Supporting Files */,
 				1569205619D7BB2F007BE690 /* BPQuickReference.h */,
 				1569205719D7BB2F007BE690 /* BPQuickReference.m */,
+				1569D37A1DCA9EE9003EA21F /* BPInterfaceLoader.h */,
+				1569D37B1DCA9EE9003EA21F /* BPInterfaceLoader.m */,
 			);
 			path = TapWheel;
 			sourceTree = "<group>";
@@ -194,7 +215,8 @@
 				15D5095A19D3DB67006056CE /* BPGradientView.m */,
 				15F2883819D7448D003FE877 /* BPTitleView.h */,
 				15F2883919D7448D003FE877 /* BPTitleView.m */,
-				1521F2EE19D7CB4100823E05 /* BPTitleView.xib */,
+				1569D37D1DCAA076003EA21F /* BPTitleView_BlueAndGrey.xib */,
+				1521F2EE19D7CB4100823E05 /* BPTitleView_Color.xib */,
 				15F2883B19D75F36003FE877 /* BPProgressView.h */,
 				15F2883C19D75F36003FE877 /* BPProgressView.m */,
 			);
@@ -296,10 +318,13 @@
 			files = (
 				15B872DD19D30BBD00EA408D /* Main.storyboard in Resources */,
 				15B872E219D30BBD00EA408D /* LaunchScreen.xib in Resources */,
+				1569D3801DCAA349003EA21F /* Interface_BlueAndGrey.storyboard in Resources */,
+				15A69F831DCA894000BB6EB2 /* ChicagoFLF.ttf in Resources */,
 				15B872DF19D30BBD00EA408D /* Images.xcassets in Resources */,
+				1569D37E1DCAA076003EA21F /* BPTitleView_BlueAndGrey.xib in Resources */,
 				154D3D2619D481EB002ECE8B /* MenuStructure.plist in Resources */,
 				154D3D2B19D483AB002ECE8B /* Interface_Color.storyboard in Resources */,
-				1521F2EF19D7CB4100823E05 /* BPTitleView.xib in Resources */,
+				1521F2EF19D7CB4100823E05 /* BPTitleView_Color.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +381,7 @@
 				1569205819D7BB2F007BE690 /* BPQuickReference.m in Sources */,
 				15B872F919D3190C00EA408D /* BPClickWheelView.m in Sources */,
 				154D3D2419D47F88002ECE8B /* BPMediaLibrary.m in Sources */,
+				1569D37C1DCA9EE9003EA21F /* BPInterfaceLoader.m in Sources */,
 				15B872D719D30BBD00EA408D /* BPAppDelegate.m in Sources */,
 				15B8730019D335B000EA408D /* BPiPodTableViewCell.m in Sources */,
 				15F2883D19D75F36003FE877 /* BPProgressView.m in Sources */,

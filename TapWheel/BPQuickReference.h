@@ -10,6 +10,6 @@
 
 @interface BPQuickReference : NSObject
 
-- (NSString*)playingQueueDescription;
+- (NSAttributedString*)playingQueueDescription;
 
 @end

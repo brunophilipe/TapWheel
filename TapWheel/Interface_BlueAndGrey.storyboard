@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JNZ-NU-zVS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JNZ-NU-zVS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,7 +21,7 @@
                     <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="20" sectionHeaderHeight="18" sectionFooterHeight="22" id="25D-A8-5bT">
                         <rect key="frame" x="0.0" y="0.0" width="238" height="178"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.45098039220000002" green="0.74901960779999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cell_row" id="GRE-QS-KXW" customClass="BPiPodTableViewCell">
@@ -33,10 +34,11 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="iPod" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cr-f6-Ynq">
                                             <rect key="frame" x="5" y="0.0" width="233" height="20"/>
                                             <fontDescription key="fontDescription" name="ChicagoFLF" family="ChicagoFLF" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" red="0.18039215689999999" green="0.29803921570000003" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.45098039220000002" green="0.74901960779999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="7cr-f6-Ynq" secondAttribute="trailing" id="N5Q-Mz-JX8"/>
                                         <constraint firstItem="7cr-f6-Ynq" firstAttribute="leading" secondItem="xIQ-au-kBD" secondAttribute="leading" constant="5" id="dIo-ik-NNF"/>
@@ -44,6 +46,7 @@
                                         <constraint firstItem="7cr-f6-Ynq" firstAttribute="top" secondItem="xIQ-au-kBD" secondAttribute="top" id="yBQ-ad-cWS"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.45098039220000002" green="0.74901960779999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="titleLabel" destination="7cr-f6-Ynq" id="gD7-AP-ibL"/>
                                 </connections>
@@ -81,7 +84,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="238" height="178"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dmG-ZM-eYv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -111,25 +113,25 @@
                                     <constraint firstAttribute="width" constant="99" id="KPJ-wG-9jo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChicagoFLF" family="ChicagoFLF" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.29803921570000003" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLv-Rh-1qe" customClass="MarqueeLabel">
-                                <rect key="frame" x="99" y="72" width="123" height="17"/>
+                                <rect key="frame" x="16" y="72" width="206" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="735-Jc-G5W"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChicagoFLF" family="ChicagoFLF" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.29803921570000003" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96v-0R-bMW" customClass="MarqueeLabel">
-                                <rect key="frame" x="99" y="95" width="123" height="17"/>
+                                <rect key="frame" x="16" y="95" width="206" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="0PU-ky-67i"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChicagoFLF" family="ChicagoFLF" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.29803921570000003" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEU-Gz-aJA">
@@ -138,44 +140,37 @@
                                     <constraint firstAttribute="width" constant="99" id="FQX-Mv-wSO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChicagoFLF" family="ChicagoFLF" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.29803921570000003" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oxr-kG-efI">
-                                <rect key="frame" x="16" y="43.5" width="75" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="6aB-aQ-0Ja"/>
-                                    <constraint firstAttribute="width" constant="75" id="hLa-Sl-DgI"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 of 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEZ-bT-O6g">
                                 <rect key="frame" x="16" y="24" width="75" height="15.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="W0N-MI-itP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChicagoFLF" family="ChicagoFLF" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.29803921570000003" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyk-na-ppq" customClass="MarqueeLabel">
-                                <rect key="frame" x="99" y="49" width="123" height="17"/>
+                                <rect key="frame" x="16" y="49" width="206" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="5yX-6M-gcE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChicagoFLF" family="ChicagoFLF" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.18039215689999999" green="0.29803921570000003" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wah-Gx-LzB" customClass="BPProgressView">
                                 <rect key="frame" x="13" y="132.5" width="212" height="16"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.45098039220000002" green="0.74901960779999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="QRg-Xc-Th3"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7UX-dw-jPg" customClass="MPVolumeView">
                                 <rect key="frame" x="14" y="130.5" width="210" height="10"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.45098039220000002" green="0.74901960779999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Xx1-Ho-Yxw"/>
                                 </constraints>
@@ -183,9 +178,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v8T-dz-btE" customClass="BPTitleView">
                                 <rect key="frame" x="0.0" y="0.0" width="238" height="18"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnk-c3-5oR" customClass="BPGradientView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnk-c3-5oR">
                                         <rect key="frame" x="0.0" y="0.0" width="238" height="18"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.45098039220000002" green="0.74901960779999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="bEp-Mb-qdT"/>
                                         </constraints>
@@ -193,7 +188,7 @@
                                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Now Playing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svo-iH-vnA">
                                         <rect key="frame" x="5" y="0.0" width="228" height="18"/>
                                         <fontDescription key="fontDescription" name="ChicagoFLF" family="ChicagoFLF" pointSize="12"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.18039215689999999" green="0.29803921570000003" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="battery_full" translatesAutoresizingMaskIntoConstraints="NO" id="ltp-H7-oyB">
@@ -203,7 +198,7 @@
                                             <constraint firstAttribute="height" constant="14" id="lzK-NY-4lZ"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-LI-NNI">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play_grey" translatesAutoresizingMaskIntoConstraints="NO" id="dcM-LI-NNI">
                                         <rect key="frame" x="5" y="2" width="14" height="14"/>
                                     </imageView>
                                 </subviews>
@@ -233,9 +228,10 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.45098039220000002" green="0.74901960779999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="96v-0R-bMW" secondAttribute="trailing" constant="16" id="0Kn-m0-gCS"/>
+                            <constraint firstItem="96v-0R-bMW" firstAttribute="leading" secondItem="3vP-NT-ehk" secondAttribute="leading" constant="16" id="0aL-NJ-jTP"/>
                             <constraint firstItem="HLv-Rh-1qe" firstAttribute="top" secondItem="cyk-na-ppq" secondAttribute="bottom" constant="6" id="20l-a0-CuZ"/>
                             <constraint firstItem="wEU-Gz-aJA" firstAttribute="top" secondItem="7UX-dw-jPg" secondAttribute="bottom" constant="16" id="64w-mT-hFE"/>
                             <constraint firstItem="bEZ-bT-O6g" firstAttribute="leading" secondItem="3vP-NT-ehk" secondAttribute="leading" constant="16" id="6in-U3-DzJ"/>
@@ -244,21 +240,18 @@
                             <constraint firstItem="cyk-na-ppq" firstAttribute="top" secondItem="v8T-dz-btE" secondAttribute="bottom" constant="31" id="JRU-d5-Xen"/>
                             <constraint firstItem="bEZ-bT-O6g" firstAttribute="top" secondItem="v8T-dz-btE" secondAttribute="bottom" constant="6" id="Mmp-CA-4cR"/>
                             <constraint firstItem="wEU-Gz-aJA" firstAttribute="top" secondItem="wah-Gx-LzB" secondAttribute="bottom" constant="8" id="ODv-78-fBR"/>
-                            <constraint firstItem="HLv-Rh-1qe" firstAttribute="leading" secondItem="Oxr-kG-efI" secondAttribute="trailing" constant="8" id="PWL-iO-uJY"/>
                             <constraint firstItem="Aw6-oE-t6U" firstAttribute="top" secondItem="WLD-q9-W5I" secondAttribute="bottom" constant="6" id="S5t-gE-QpH"/>
                             <constraint firstItem="Aw6-oE-t6U" firstAttribute="top" secondItem="wEU-Gz-aJA" secondAttribute="bottom" constant="6" id="SCh-Dv-RL8"/>
-                            <constraint firstItem="Oxr-kG-efI" firstAttribute="leading" secondItem="3vP-NT-ehk" secondAttribute="leading" constant="16" id="TPd-bK-Na4"/>
                             <constraint firstAttribute="trailing" secondItem="wah-Gx-LzB" secondAttribute="trailing" constant="13" id="X9H-8v-pfx"/>
                             <constraint firstAttribute="trailing" secondItem="wEU-Gz-aJA" secondAttribute="trailing" constant="16" id="Xe7-aS-nGM"/>
+                            <constraint firstItem="HLv-Rh-1qe" firstAttribute="leading" secondItem="3vP-NT-ehk" secondAttribute="leading" constant="16" id="XgB-Ff-bu4"/>
                             <constraint firstItem="v8T-dz-btE" firstAttribute="leading" secondItem="3vP-NT-ehk" secondAttribute="leading" id="Zfj-0D-o3Z"/>
                             <constraint firstAttribute="trailing" secondItem="HLv-Rh-1qe" secondAttribute="trailing" constant="16" id="beq-it-bjN"/>
                             <constraint firstAttribute="trailing" secondItem="7UX-dw-jPg" secondAttribute="trailing" constant="14" id="d8V-49-dAL"/>
-                            <constraint firstItem="96v-0R-bMW" firstAttribute="leading" secondItem="Oxr-kG-efI" secondAttribute="trailing" constant="8" id="hgZ-2e-3Ze"/>
+                            <constraint firstItem="cyk-na-ppq" firstAttribute="leading" secondItem="3vP-NT-ehk" secondAttribute="leading" constant="16" id="mDn-r6-AXQ"/>
                             <constraint firstAttribute="trailing" secondItem="cyk-na-ppq" secondAttribute="trailing" constant="16" id="nY2-dh-OdZ"/>
-                            <constraint firstItem="cyk-na-ppq" firstAttribute="leading" secondItem="Oxr-kG-efI" secondAttribute="trailing" constant="8" id="qpB-xB-XWd"/>
                             <constraint firstItem="7UX-dw-jPg" firstAttribute="leading" secondItem="3vP-NT-ehk" secondAttribute="leading" constant="14" id="qrw-hu-EWu"/>
                             <constraint firstItem="v8T-dz-btE" firstAttribute="top" secondItem="3vP-NT-ehk" secondAttribute="top" id="sMm-w6-Qss"/>
-                            <constraint firstItem="Oxr-kG-efI" firstAttribute="top" secondItem="bEZ-bT-O6g" secondAttribute="bottom" constant="4" id="sPn-bX-Ocn"/>
                             <constraint firstItem="96v-0R-bMW" firstAttribute="top" secondItem="HLv-Rh-1qe" secondAttribute="bottom" constant="6" id="v0J-Xu-gEt"/>
                             <constraint firstItem="wEU-Gz-aJA" firstAttribute="leading" secondItem="WLD-q9-W5I" secondAttribute="trailing" constant="8" id="vFQ-we-4ya"/>
                             <constraint firstItem="WLD-q9-W5I" firstAttribute="leading" secondItem="3vP-NT-ehk" secondAttribute="leading" constant="16" id="vPv-bc-Ynt"/>
@@ -268,7 +261,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="238" height="178"/>
                     <connections>
-                        <outlet property="albumArtworkView" destination="Oxr-kG-efI" id="UZj-wo-IGN"/>
                         <outlet property="label_albumName" destination="96v-0R-bMW" id="KbK-be-Hge"/>
                         <outlet property="label_artistName" destination="HLv-Rh-1qe" id="cF5-At-SAL"/>
                         <outlet property="label_currentTime" destination="WLD-q9-W5I" id="IVN-F2-Njm"/>
@@ -286,6 +278,6 @@
     </scenes>
     <resources>
         <image name="battery_full" width="28" height="14"/>
-        <image name="play" width="14" height="14"/>
+        <image name="play_grey" width="14" height="14"/>
     </resources>
 </document>

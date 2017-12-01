@@ -29,7 +29,7 @@
 - (void)skipToPreviousItem;
 - (void)playPause;
 
-- (NSString*)playingQueueDescription;
+- (NSAttributedString*)playingQueueDescription;
 - (MPMusicPlaybackState)playerState;
 
 - (MPMediaItem*)nowPlayingItem;

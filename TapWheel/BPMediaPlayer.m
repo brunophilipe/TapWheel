@@ -126,7 +126,7 @@
 	return [self.mediaPlayer nowPlayingItem];
 }
 
-- (NSString*)playingQueueDescription
+- (NSAttributedString*)playingQueueDescription
 {
 	return [self.quickReference playingQueueDescription];
 }

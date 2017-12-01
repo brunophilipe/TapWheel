@@ -8,6 +8,7 @@
 
 #import "BPTitleTableHeaderView.h"
 #import "BPTitleView.h"
+#import "BPInterfaceLoader.h"
 
 @interface BPTitleTableHeaderView ()
 
@@ -65,14 +66,13 @@
 
 - (void)loadContent
 {
-	NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"BPTitleView" owner:self options:nil];
+	BPTitleView *view = [BPInterfaceLoader loadTitleViewForStyle:[BPInterfaceLoader getCurrentStyle]];
 
-	for (id view in views) {
-		if ([view isKindOfClass:[BPTitleView class]]) {
-			[self setTitleView:view];
-			[self.contentView setFrame:[view bounds]];
-			[self.contentView addSubview:view];
-		}
+	if (view)
+	{
+		[self setTitleView:view];
+		[self.contentView setFrame:[view bounds]];
+		[self.contentView addSubview:view];
 	}
 }
 
