@@ -140,17 +140,32 @@ BOOL BPEllipsisWithRectContainsPoint(CGRect rect, CGPoint point);
 	CGPoint tapLocation = [[touches anyObject] locationInView:self];
 
 	// Test if long press action should cancel
-	if (self.didTriggerLongPress && self.longPressInitialPosition.x >= 0 && self.longPressInitialPosition.y >= 0) {
-		CGVector roaming = CGVectorMake(ABS(tapLocation.x - _longPressInitialPosition.x), ABS(tapLocation.y - _longPressInitialPosition.y));
+	if (self.didTriggerLongPress && self.longPressInitialPosition.x >= 0 && self.longPressInitialPosition.y >= 0)
+	{
+		CGVector roaming = CGVectorMake(ABS(tapLocation.x - _longPressInitialPosition.x),
+										ABS(tapLocation.y - _longPressInitialPosition.y));
+
 		CGFloat linearRoaming = sqrt(pow(roaming.dx, 2) + pow(roaming.dy, 2));
-		if (linearRoaming >= kBPLongPressRoamingLimit) {
+
+		if (linearRoaming >= kBPLongPressRoamingLimit)
+		{
 			[self setLongPressInitialPosition:CGPointMake(-1.0, -1.0)];
 			[self.delegate clickWheelDidCancelHoldActions:self];
 			[self setDidTriggerLongPress:NO];
 		}
-	} else {
+	}
+	else
+	{
 		[self.longPressTimer invalidate];
 		[self setLongPressTimer:nil];
+	}
+
+	CGFloat thirdSize = [self frame].size.width / 3.0;
+
+	if (tapLocation.x >= thirdSize && tapLocation.x <= thirdSize * 2 && tapLocation.y >= thirdSize && tapLocation.y <= thirdSize * 2)
+	{
+		// User tapped the middle. Do nothing.
+		return;
 	}
 
 	CGFloat currentRadian = [self radianFromCenterForTapAtLocation:tapLocation];
