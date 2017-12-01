@@ -3,6 +3,7 @@
 
 target "TapWheel" do
 	pod 'MarqueeLabel'
+	pod 'ForceTouchGestureRecognizer'
 end
 
 target "TapWheelTests" do

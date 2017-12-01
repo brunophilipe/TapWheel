@@ -1,10 +1,15 @@
 PODS:
+  - ForceTouchGestureRecognizer (0.0.4)
   - MarqueeLabel (2.0.5)
 
 DEPENDENCIES:
+  - ForceTouchGestureRecognizer
   - MarqueeLabel
 
 SPEC CHECKSUMS:
-  MarqueeLabel: 9a9f90f431640b70f010e949ce228391f3af3c61
+  ForceTouchGestureRecognizer: 31c045b7dfc061a8c92ece76a9b4d7db905c2914
+  MarqueeLabel: 4c18332d910998d23fde2d45844395d13400c823
 
-COCOAPODS: 0.33.1
+PODFILE CHECKSUM: f2fde496e7e20ab9f6167729955581ca2a0aaac1
+
+COCOAPODS: 1.3.1

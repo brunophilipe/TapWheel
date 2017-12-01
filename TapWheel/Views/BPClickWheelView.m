@@ -8,6 +8,8 @@
 
 #import "BPClickWheelView.h"
 
+#import <ForceTouchGestureRecognizer/ForceTouchGestureRecognizer.h>
+
 #define BPDegreesToRadians(x) (x * (M_PI/180.0))
 #define kBPDialSegmentSize 20.0
 #define kBPLongPressRoamingLimit 10.0
@@ -16,7 +18,7 @@ BOOL BPEllipsisWithRectContainsPoint(CGRect rect, CGPoint point);
 
 @interface BPClickWheelView () <UIGestureRecognizerDelegate>
 
-@property (strong) UITapGestureRecognizer *tapRecognizer;
+@property (strong) UIGestureRecognizer *tapRecognizer;
 @property (strong) NSTimer *longPressTimer;
 
 @property CGPoint longPressInitialPosition;
@@ -53,13 +55,29 @@ BOOL BPEllipsisWithRectContainsPoint(CGRect rect, CGPoint point);
 	return self;
 }
 
+- (BOOL)has3dTouch
+{
+	return [UITouch instancesRespondToSelector:@selector(maximumPossibleForce)];
+}
+
 - (void)configure
 {
 	// Create tap gesture recognizer
-	self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap)];
-	[self.tapRecognizer setNumberOfTapsRequired:1];
-	[self.tapRecognizer setNumberOfTouchesRequired:1];
-	[self addGestureRecognizer:self.tapRecognizer];
+	if ([self has3dTouch])
+	{
+		ForceTouchGestureRecognizer *tapRecognizer = [[ForceTouchGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
+		[tapRecognizer setForceSensitivity:0.5];
+		[self addGestureRecognizer:tapRecognizer];
+		[self setTapRecognizer:tapRecognizer];
+	}
+	else
+	{
+		UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
+		[tapRecognizer setNumberOfTapsRequired:1];
+		[tapRecognizer setNumberOfTouchesRequired:1];
+		[self addGestureRecognizer:tapRecognizer];
+		[self setTapRecognizer:tapRecognizer];
+	}
 
 	[self setLongPressInitialPosition:CGPointMake(-1.0, -1.0)];
 }
@@ -211,7 +229,7 @@ BOOL BPEllipsisWithRectContainsPoint(CGRect rect, CGPoint point);
 
 #pragma mark - Gesture Recognizers
 
-- (void)didTap
+- (void)didTap:(id)sender
 {
 	CGRect centerButtonArea = CGRectMake(58, 58, 64, 64);
 	CGPoint tapCoordinates = [self.tapRecognizer locationInView:self];
